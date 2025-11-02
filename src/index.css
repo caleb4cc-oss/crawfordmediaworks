@@ -110,13 +110,14 @@ body {
 
   .typewriter-text {
     font-family: 'Space Mono', 'IBM Plex Mono', monospace !important;
-    overflow: visible !important;
+    overflow: hidden;
+    overflow-y: visible;
     border-right: 0.15em solid white;
     white-space: nowrap;
     display: inline-block;
     padding-bottom: 0.2em;
     animation:
-      typewriter 3s steps(40, end) 0.5s 1 normal both,
+      typewriter 3s steps(40, end) 0s 1 normal both,
       blinkCaret 0.75s step-end infinite;
   }
 

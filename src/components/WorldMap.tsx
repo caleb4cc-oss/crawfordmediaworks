@@ -8,9 +8,9 @@ interface ClientLocation {
 }
 
 const clientLocations: ClientLocation[] = [
-  { name: 'London', country: 'United Kingdom', x: 50.5, y: 30 },
-  { name: 'New York', country: 'United States', x: 22, y: 35 },
-  { name: 'Dubai', country: 'United Arab Emirates', x: 56, y: 42 }
+  { name: '', country: 'United Kingdom', x: 50.5, y: 30 },
+  { name: '', country: 'United States', x: 22, y: 35 },
+  { name: '', country: 'United Arab Emirates', x: 56, y: 42 }
 ];
 
 export default function WorldMap() {
@@ -85,7 +85,11 @@ export default function WorldMap() {
                   alt="World Map"
                   className="w-full h-auto select-none pointer-events-none"
                   draggable={false}
-                  style={{ opacity: 0.7 }}
+                  style={{
+                    opacity: 0.7,
+                    filter: 'brightness(0.5) contrast(1.2)',
+                    mixBlendMode: 'lighten'
+                  }}
                 />
 
                 {clientLocations.map((location, index) => (
@@ -120,8 +124,7 @@ export default function WorldMap() {
           {displayLocation && (
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-50">
               <div className="bg-white text-black px-6 py-4 rounded-lg shadow-2xl border-2 border-white animate-fadeIn">
-                <div className="text-sm font-mono font-semibold mb-1">{displayLocation.country}</div>
-                <div className="text-2xl font-bold">{displayLocation.name}</div>
+                <div className="text-2xl font-bold">{displayLocation.country}</div>
               </div>
             </div>
           )}
@@ -134,13 +137,12 @@ export default function WorldMap() {
               className="bg-gradient-to-br from-gray-900/50 to-black border border-gray-800 rounded-xl p-6 hover:border-white transition-all duration-300 cursor-pointer group"
               onClick={() => setActiveLocation(location)}
             >
-              <div className="flex items-center gap-3 mb-2">
+              <div className="flex items-center gap-3">
                 <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
-                <span className="text-sm text-gray-400 font-mono">{location.country}</span>
+                <h3 className="text-2xl font-bold group-hover:text-white transition-colors">
+                  {location.country}
+                </h3>
               </div>
-              <h3 className="text-2xl font-bold group-hover:text-white transition-colors">
-                {location.name}
-              </h3>
             </div>
           ))}
         </div>

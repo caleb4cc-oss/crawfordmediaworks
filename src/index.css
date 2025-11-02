@@ -117,7 +117,7 @@ body {
     display: inline-block;
     padding-bottom: 0.2em;
     animation:
-      typewriter 3s steps(40, end) 0s 1 normal both,
+      typewriter 3s steps(40, end) 0.5s 1 normal both,
       blinkCaret 0.75s step-end infinite;
   }
 

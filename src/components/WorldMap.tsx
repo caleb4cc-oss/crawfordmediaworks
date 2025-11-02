@@ -81,7 +81,7 @@ export default function WorldMap() {
                 }}
               >
                 <img
-                  src="/Assets/very-high-quality-10000x5268px-no-borders-world-map-but-v0-z7mxzmiohwsc1.webp"
+                  src="/Assets/World_map_blank_without_borders.svg.png"
                   alt="World Map"
                   className="w-full h-auto select-none pointer-events-none"
                   draggable={false}

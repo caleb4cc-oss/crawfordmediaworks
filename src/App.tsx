@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import VideoShowcase from './components/VideoShowcase';
 import Services from './components/Services';
 import About from './components/About';
+import WorldMap from './components/WorldMap';
 import CTA from './components/CTA';
 import VideoModal from './components/VideoModal';
 
@@ -15,6 +16,7 @@ function App() {
       <VideoShowcase onVideoClick={setSelectedVideo} />
       <Services />
       <About />
+      <WorldMap />
       <CTA />
       <VideoModal
         videoUrl={selectedVideo}

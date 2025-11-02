@@ -37,22 +37,6 @@ export default function WorldMap() {
 
     const g = svg.append('g');
 
-    const worldData = {
-      type: 'FeatureCollection',
-      features: [
-        {
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            type: 'Polygon',
-            coordinates: [[
-              [-180, -90], [180, -90], [180, 90], [-180, 90], [-180, -90]
-            ]]
-          }
-        }
-      ]
-    };
-
     g.append('rect')
       .attr('width', width)
       .attr('height', height)
@@ -87,19 +71,67 @@ export default function WorldMap() {
     }
 
     const continents = g.append('g').attr('class', 'continents');
-    const continentCoords: number[][][][] = [
-      [[[-100, 50], [-100, 30], [-80, 30], [-80, 50], [-100, 50]]],
-      [[[0, 60], [0, 35], [40, 35], [40, 60], [0, 60]]],
-      [[[40, 40], [40, 10], [80, 10], [80, 40], [40, 40]]]
+
+    const continentShapes = [
+      {
+        name: 'North America',
+        coordinates: [[
+          [-170, 70], [-170, 50], [-140, 50], [-130, 60], [-120, 60], [-110, 50],
+          [-100, 50], [-90, 40], [-85, 30], [-90, 25], [-95, 20], [-105, 20],
+          [-110, 15], [-115, 15], [-120, 20], [-125, 25], [-130, 30], [-140, 30],
+          [-150, 40], [-160, 50], [-170, 60], [-170, 70]
+        ]]
+      },
+      {
+        name: 'South America',
+        coordinates: [[
+          [-80, 10], [-75, 5], [-70, 0], [-65, -5], [-60, -10], [-55, -20],
+          [-60, -30], [-65, -40], [-70, -50], [-75, -55], [-70, -55], [-65, -50],
+          [-60, -45], [-55, -35], [-50, -25], [-48, -15], [-50, -5], [-55, 0],
+          [-60, 5], [-70, 10], [-80, 10]
+        ]]
+      },
+      {
+        name: 'Europe',
+        coordinates: [[
+          [-10, 70], [-10, 60], [0, 55], [10, 55], [20, 60], [30, 60], [40, 55],
+          [40, 45], [30, 40], [20, 35], [10, 35], [0, 40], [-10, 45], [-10, 70]
+        ]]
+      },
+      {
+        name: 'Africa',
+        coordinates: [[
+          [-20, 35], [-15, 30], [-10, 20], [-5, 10], [0, 5], [10, 0], [20, -5],
+          [30, -10], [40, -15], [45, -25], [40, -30], [30, -35], [20, -35],
+          [15, -30], [10, -25], [5, -15], [0, -5], [-5, 5], [-10, 15], [-15, 25],
+          [-20, 35]
+        ]]
+      },
+      {
+        name: 'Asia',
+        coordinates: [[
+          [40, 70], [50, 70], [60, 75], [80, 75], [100, 70], [120, 60], [140, 50],
+          [145, 40], [140, 30], [130, 25], [120, 20], [110, 10], [100, 5], [90, 0],
+          [80, 0], [70, 5], [60, 10], [50, 20], [45, 30], [40, 40], [40, 70]
+        ]]
+      },
+      {
+        name: 'Australia',
+        coordinates: [[
+          [115, -10], [125, -12], [135, -15], [145, -20], [150, -30], [145, -40],
+          [135, -42], [125, -38], [115, -30], [110, -20], [115, -10]
+        ]]
+      }
     ];
 
-    continentCoords.forEach((coords) => {
+    continentShapes.forEach((continent) => {
       continents.append('path')
-        .datum({ type: 'Polygon', coordinates: coords })
+        .datum({ type: 'Polygon', coordinates: continent.coordinates })
         .attr('d', path as any)
-        .attr('fill', '#1a1a1a')
-        .attr('stroke', '#2a2a2a')
-        .attr('stroke-width', 1);
+        .attr('fill', '#2a2a2a')
+        .attr('stroke', '#404040')
+        .attr('stroke-width', 1.5)
+        .attr('class', 'continent-shape');
     });
 
     const locationsGroup = g.append('g').attr('class', 'locations');

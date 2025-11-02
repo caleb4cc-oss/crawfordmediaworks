@@ -109,10 +109,11 @@ body {
   }
 
   .typewriter-text {
+    font-family: 'Space Mono', 'IBM Plex Mono', monospace !important;
     overflow: hidden;
     border-right: 0.15em solid white;
     white-space: nowrap;
-    margin: 0 auto;
+    display: inline-block;
     animation:
       typewriter 3s steps(40, end) 0.5s 1 normal both,
       blinkCaret 0.75s step-end infinite;
@@ -120,17 +121,17 @@ body {
 
   @keyframes gridPulse {
     0%, 100% {
-      opacity: 0.1;
+      opacity: 0.05;
     }
     50% {
-      opacity: 0.3;
+      opacity: 0.1;
     }
   }
 
   .grid-overlay {
     background-image:
-      linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
     animation: gridPulse 4s ease-in-out infinite;
   }

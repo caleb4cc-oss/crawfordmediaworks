@@ -1,6 +1,6 @@
 export default function CTA() {
   return (
-    <section className="py-32 bg-black border-t border-gray-900">
+    <section id="contact" className="py-32 bg-black border-t border-gray-900">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <h2 className="text-6xl md:text-7xl font-bold mb-12">
           Ready to scale<br />your ads?

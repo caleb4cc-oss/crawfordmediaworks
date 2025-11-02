@@ -7,6 +7,13 @@ declare global {
 }
 
 export default function Hero() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <section className="hero">
       <div className="hero-bg" aria-hidden="true">
@@ -17,6 +24,46 @@ export default function Hero() {
           interaction-prompt="none"
         />
       </div>
+
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex justify-between items-center">
+            <div className="text-xl font-bold">[ VIDEO_AGENCY ]</div>
+            <div className="flex gap-8">
+              <button
+                onClick={() => scrollToSection('showcase')}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Showcase
+              </button>
+              <button
+                onClick={() => scrollToSection('services')}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Services
+              </button>
+              <button
+                onClick={() => scrollToSection('about')}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                About
+              </button>
+              <button
+                onClick={() => scrollToSection('clients')}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Clients
+              </button>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Contact
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
 
       <div className="hero-content">
         <div className="max-w-5xl mx-auto px-6 text-center">

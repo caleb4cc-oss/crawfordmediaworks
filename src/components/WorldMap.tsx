@@ -17,7 +17,7 @@ export default function WorldMap() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="py-24 px-6 bg-black relative overflow-hidden">
+    <section id="clients" className="py-24 px-6 bg-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold mb-4 tracking-tight">

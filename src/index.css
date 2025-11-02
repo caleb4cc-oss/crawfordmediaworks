@@ -140,20 +140,11 @@ body {
     display: none;
   }
 
-  @keyframes gridPulse {
-    0%, 100% {
-      opacity: 0.05;
-    }
-    50% {
-      opacity: 0.1;
-    }
-  }
-
   .grid-overlay {
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
     background-size: 50px 50px;
-    animation: gridPulse 4s ease-in-out infinite;
+    opacity: 1;
   }
 }

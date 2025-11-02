@@ -110,8 +110,7 @@ body {
 
   .typewriter-text {
     font-family: 'Space Mono', 'IBM Plex Mono', monospace !important;
-    overflow: hidden;
-    overflow-y: visible;
+    overflow: visible;
     border-right: 2px solid white;
     white-space: nowrap;
     display: inline-block;

@@ -14,7 +14,7 @@ export default function Hero() {
       <div className="hero-bg" aria-hidden="true">
         <spline-viewer
           id="hero-spline"
-          url="https://prod.spline.design/W43q4Hg6Ghj1QPJt/scene.splinecode"
+          url="https://prod.spline.design/7K-GEL3EWZkk788g/scene.splinecode"
           loading="eager"
           interaction-prompt="none"
         />

@@ -112,7 +112,7 @@ body {
     font-family: 'Space Mono', 'IBM Plex Mono', monospace !important;
     overflow: hidden;
     overflow-y: visible;
-    border-right: 0.15em solid white;
+    border-right: 2px solid white;
     white-space: nowrap;
     display: inline-block;
     padding-bottom: 0.2em;

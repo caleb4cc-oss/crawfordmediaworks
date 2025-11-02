@@ -1,0 +1,81 @@
+import { useEffect, useRef } from 'react';
+import { Play } from 'lucide-react';
+
+const videos = [
+  { id: 1, title: 'E-commerce Ad', thumbnail: 'https://images.pexels.com/photos/3584927/pexels-photo-3584927.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 2, title: 'Product Launch', thumbnail: 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 3, title: 'Brand Story', thumbnail: 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 4, title: 'Social Campaign', thumbnail: 'https://images.pexels.com/photos/3906810/pexels-photo-3906810.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 5, title: 'Testimonial', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 6, title: 'Product Demo', thumbnail: 'https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=800' },
+];
+
+interface VideoShowcaseProps {
+  onVideoClick: (videoUrl: string) => void;
+}
+
+export default function VideoShowcase({ onVideoClick }: VideoShowcaseProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let scrollAmount = 0;
+    const scrollSpeed = 0.5;
+
+    const scroll = () => {
+      scrollAmount += scrollSpeed;
+      if (scrollContainer) {
+        scrollContainer.scrollLeft = scrollAmount;
+
+        if (scrollAmount >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+          scrollAmount = 0;
+        }
+      }
+    };
+
+    const intervalId = setInterval(scroll, 30);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <section className="py-20 bg-black overflow-hidden">
+      <div className="mb-12 px-6 max-w-7xl mx-auto">
+        <h2 className="text-5xl md:text-6xl font-bold mb-4">Our Work</h2>
+        <p className="text-xl text-gray-400">Scroll-stopping video ads that convert</p>
+      </div>
+
+      <div
+        ref={scrollRef}
+        className="flex gap-6 px-6 overflow-x-auto scrollbar-hide scroll-smooth"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        {[...videos, ...videos].map((video, index) => (
+          <div
+            key={`${video.id}-${index}`}
+            className="flex-shrink-0 w-[400px] h-[600px] relative group cursor-pointer"
+            onClick={() => onVideoClick(video.thumbnail)}
+          >
+            <img
+              src={video.thumbnail}
+              alt={video.title}
+              className="w-full h-full object-cover rounded-2xl"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 rounded-2xl flex items-center justify-center">
+              <div className="transform scale-0 group-hover:scale-100 transition-transform duration-300">
+                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center">
+                  <Play size={32} className="text-black ml-1" fill="black" />
+                </div>
+              </div>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent rounded-b-2xl">
+              <h3 className="text-2xl font-semibold">{video.title}</h3>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'IBM Plex Mono', 'Space Mono', monospace;
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    background: transparent !important;
+    overflow: clip;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-bg spline-viewer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero .overlay,
+  .hero .scrim,
+  .hero::before,
+  .hero::after {
+    background: transparent !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  body,
+  main,
+  .page,
+  .container,
+  .section {
+    background: transparent !important;
+  }
+
+  spline-viewer canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+  }
+
+  spline-viewer iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blinkCaret {
+    from, to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: white;
+    }
+  }
+
+  .typewriter-text {
+    overflow: hidden;
+    border-right: 0.15em solid white;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation:
+      typewriter 3s steps(40, end) 0.5s 1 normal both,
+      blinkCaret 0.75s step-end infinite;
+  }
+
+  @keyframes gridPulse {
+    0%, 100% {
+      opacity: 0.1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  .grid-overlay {
+    background-image:
+      linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridPulse 4s ease-in-out infinite;
+  }
+}

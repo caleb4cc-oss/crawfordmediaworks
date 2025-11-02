@@ -48,6 +48,61 @@ export default function WorldMap() {
                   }}
                 />
 
+                {/* Gridlines */}
+                <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                  {/* Vertical lines (X-axis) */}
+                  {Array.from({ length: 11 }).map((_, i) => {
+                    const x = i * 10;
+                    return (
+                      <g key={`v-${i}`}>
+                        <line
+                          x1={`${x}%`}
+                          y1="0%"
+                          x2={`${x}%`}
+                          y2="100%"
+                          stroke="rgba(255, 255, 255, 0.15)"
+                          strokeWidth="1"
+                        />
+                        <text
+                          x={`${x}%`}
+                          y="98%"
+                          fill="rgba(255, 255, 255, 0.5)"
+                          fontSize="10"
+                          textAnchor="middle"
+                        >
+                          {x}
+                        </text>
+                      </g>
+                    );
+                  })}
+
+                  {/* Horizontal lines (Y-axis) */}
+                  {Array.from({ length: 11 }).map((_, i) => {
+                    const y = i * 10;
+                    return (
+                      <g key={`h-${i}`}>
+                        <line
+                          x1="0%"
+                          y1={`${y}%`}
+                          x2="100%"
+                          y2={`${y}%`}
+                          stroke="rgba(255, 255, 255, 0.15)"
+                          strokeWidth="1"
+                        />
+                        <text
+                          x="2%"
+                          y={`${y}%`}
+                          fill="rgba(255, 255, 255, 0.5)"
+                          fontSize="10"
+                          dominantBaseline="middle"
+                        >
+                          {y}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </svg>
+
                 {clientLocations.map((location, index) => (
                   <div
                     key={index}

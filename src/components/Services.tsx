@@ -1,13 +1,5 @@
 import { Scissors, TrendingUp } from 'lucide-react';
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'spline-viewer': any;
-    }
-  }
-}
-
 export default function Services() {
   const services = [
     {
@@ -23,17 +15,8 @@ export default function Services() {
   ];
 
   return (
-    <section className="relative py-32 bg-black text-white overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <spline-viewer
-          url="https://prod.spline.design/7K-GEL3EWZkk788g/scene.splinecode"
-          loading="eager"
-          interaction-prompt="none"
-          style={{ width: '100%', height: '100%', opacity: 0.3 }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+    <section className="py-32 bg-black text-white">
+      <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-5xl md:text-6xl font-bold mb-20 text-center">Our Services</h2>
 
         <div className="grid md:grid-cols-2 gap-8">

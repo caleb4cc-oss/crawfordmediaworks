@@ -101,7 +101,7 @@ body {
 
   @keyframes blinkCaret {
     from, to {
-      border-color: transparent;
+      border-color: white;
     }
     50% {
       border-color: white;

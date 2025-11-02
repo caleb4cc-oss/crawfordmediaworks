@@ -82,9 +82,14 @@ export default function Hero() {
           </p>
 
           <div className="flex justify-center items-center">
-            <button className="px-8 py-4 bg-white text-black rounded font-semibold text-lg hover:bg-gray-200 transition-all hover:scale-105 transform duration-200 border-2 border-white">
+            <a
+              href="https://calendly.com/crawfordmediaworks/crawford-media"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-white text-black rounded font-semibold text-lg hover:bg-gray-200 transition-all hover:scale-105 transform duration-200 border-2 border-white inline-block"
+            >
               Book a Strategy Call
-            </button>
+            </a>
           </div>
         </div>
 

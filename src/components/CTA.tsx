@@ -6,9 +6,14 @@ export default function CTA() {
           Ready to increase sales with high-performing video ads?
         </h2>
 
-        <button className="px-12 py-5 bg-white text-black rounded-full font-semibold text-xl hover:bg-gray-200 transition-all hover:scale-105 transform duration-200">
+        <a
+          href="https://calendly.com/crawfordmediaworks/crawford-media"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-12 py-5 bg-white text-black rounded-full font-semibold text-xl hover:bg-gray-200 transition-all hover:scale-105 transform duration-200 inline-block"
+        >
           Book a Call
-        </button>
+        </a>
       </div>
 
       <footer className="mt-32 pt-12 border-t border-gray-900 text-center text-gray-500">

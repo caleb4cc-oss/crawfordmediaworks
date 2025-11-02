@@ -9,7 +9,7 @@ interface ClientLocation {
 
 const clientLocations: ClientLocation[] = [
   { name: '', country: 'United Kingdom', x: 50.8, y: 27.5 },
-  { name: '', country: 'United States', x: 22, y: 38 },
+  { name: '', country: 'United States', x: 20, y: 36 },
   { name: '', country: 'United Arab Emirates', x: 60, y: 40 }
 ];
 

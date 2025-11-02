@@ -18,7 +18,6 @@ export default function Hero() {
           loading="eager"
           interaction-prompt="none"
         />
-        <div className="absolute inset-0 grid-overlay pointer-events-none" />
       </div>
 
       <div className="hero-content">

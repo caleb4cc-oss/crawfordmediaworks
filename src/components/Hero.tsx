@@ -73,7 +73,7 @@ export default function Hero() {
             </h1>
           </div>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed font-semibold">
+          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-4xl mx-auto font-semibold whitespace-nowrap">
             High-converting video ads that turn scrollers into buyers.
           </p>
 

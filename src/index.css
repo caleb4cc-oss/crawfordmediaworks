@@ -110,7 +110,7 @@ body {
 
   .typewriter-text {
     font-family: 'Space Mono', 'IBM Plex Mono', monospace !important;
-    overflow: visible;
+    overflow: hidden;
     border-right: 2px solid white;
     white-space: nowrap;
     display: inline-block;
@@ -118,6 +118,10 @@ body {
     animation:
       typewriter 3s steps(40, end) 0.5s 1 normal both,
       blinkCaret 0.75s step-end infinite;
+  }
+
+  .typewriter-text::-webkit-scrollbar {
+    display: none;
   }
 
   @keyframes gridPulse {

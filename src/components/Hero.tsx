@@ -23,8 +23,8 @@ export default function Hero() {
 
       <div className="hero-content">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <div className="flex justify-center mb-6">
-            <h1 className="text-6xl md:text-7xl font-bold tracking-tight leading-none typewriter-text">
+          <div className="flex justify-center mb-8 overflow-visible">
+            <h1 className="text-6xl md:text-7xl font-bold tracking-tight leading-relaxed typewriter-text">
               Video Editing Agency
             </h1>
           </div>
@@ -34,13 +34,9 @@ export default function Hero() {
             we turn raw footage into scroll-stopping content that drives sales.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex justify-center items-center">
             <button className="px-8 py-4 bg-white text-black rounded font-semibold text-lg hover:bg-gray-200 transition-all hover:scale-105 transform duration-200 border-2 border-white">
               [ BOOK_A_CALL ]
-            </button>
-            <button className="px-8 py-4 border-2 border-white text-white rounded font-semibold text-lg hover:bg-white hover:text-black transition-all hover:scale-105 transform duration-200 flex items-center gap-2">
-              <Play size={20} />
-              [ VIEW_WORK ]
             </button>
           </div>
         </div>

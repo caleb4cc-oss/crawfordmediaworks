@@ -1,198 +1,51 @@
-import { useEffect, useRef, useState } from 'react';
-import { geoMercator, geoPath } from 'd3-geo';
-import { select } from 'd3-selection';
-import { zoom, zoomIdentity } from 'd3-zoom';
+import { useRef, useState, useEffect } from 'react';
 
 interface ClientLocation {
   name: string;
   country: string;
-  coordinates: [number, number];
+  x: number;
+  y: number;
 }
 
 const clientLocations: ClientLocation[] = [
-  { name: 'London', country: 'United Kingdom', coordinates: [-0.1276, 51.5074] },
-  { name: 'New York', country: 'United States', coordinates: [-74.006, 40.7128] },
-  { name: 'Dubai', country: 'United Arab Emirates', coordinates: [55.2708, 25.2048] }
+  { name: 'London', country: 'United Kingdom', x: 50.5, y: 30 },
+  { name: 'New York', country: 'United States', x: 22, y: 35 },
+  { name: 'Dubai', country: 'United Arab Emirates', x: 56, y: 42 }
 ];
 
 export default function WorldMap() {
-  const svgRef = useRef<SVGSVGElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [activeLocation, setActiveLocation] = useState<ClientLocation | null>(null);
   const [hoveredLocation, setHoveredLocation] = useState<ClientLocation | null>(null);
 
-  useEffect(() => {
-    if (!svgRef.current) return;
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    const delta = e.deltaY * -0.001;
+    const newScale = Math.min(Math.max(1, scale + delta), 3);
+    setScale(newScale);
+  };
 
-    const svg = select(svgRef.current);
-    const width = 1200;
-    const height = 600;
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('.location-pin')) return;
+    setIsDragging(true);
+    setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
+  };
 
-    svg.selectAll('*').remove();
-
-    const projection = geoMercator()
-      .scale(180)
-      .translate([width / 2, height / 1.5]);
-
-    const path = geoPath().projection(projection);
-
-    const g = svg.append('g');
-
-    g.append('rect')
-      .attr('width', width)
-      .attr('height', height)
-      .attr('fill', '#0a0a0a');
-
-    const gridLines = g.append('g').attr('class', 'grid-lines');
-
-    for (let lat = -90; lat <= 90; lat += 15) {
-      const coords: [number, number][] = [];
-      for (let lon = -180; lon <= 180; lon += 5) {
-        coords.push([lon, lat]);
-      }
-      gridLines.append('path')
-        .datum({ type: 'LineString', coordinates: coords })
-        .attr('d', path as any)
-        .attr('fill', 'none')
-        .attr('stroke', '#1a1a1a')
-        .attr('stroke-width', 0.5);
-    }
-
-    for (let lon = -180; lon <= 180; lon += 15) {
-      const coords: [number, number][] = [];
-      for (let lat = -90; lat <= 90; lat += 5) {
-        coords.push([lon, lat]);
-      }
-      gridLines.append('path')
-        .datum({ type: 'LineString', coordinates: coords })
-        .attr('d', path as any)
-        .attr('fill', 'none')
-        .attr('stroke', '#1a1a1a')
-        .attr('stroke-width', 0.5);
-    }
-
-    const continents = g.append('g').attr('class', 'continents');
-
-    const continentShapes = [
-      {
-        name: 'North America',
-        coordinates: [[
-          [-170, 70], [-170, 50], [-140, 50], [-130, 60], [-120, 60], [-110, 50],
-          [-100, 50], [-90, 40], [-85, 30], [-90, 25], [-95, 20], [-105, 20],
-          [-110, 15], [-115, 15], [-120, 20], [-125, 25], [-130, 30], [-140, 30],
-          [-150, 40], [-160, 50], [-170, 60], [-170, 70]
-        ]]
-      },
-      {
-        name: 'South America',
-        coordinates: [[
-          [-80, 10], [-75, 5], [-70, 0], [-65, -5], [-60, -10], [-55, -20],
-          [-60, -30], [-65, -40], [-70, -50], [-75, -55], [-70, -55], [-65, -50],
-          [-60, -45], [-55, -35], [-50, -25], [-48, -15], [-50, -5], [-55, 0],
-          [-60, 5], [-70, 10], [-80, 10]
-        ]]
-      },
-      {
-        name: 'Europe',
-        coordinates: [[
-          [-10, 70], [-10, 60], [0, 55], [10, 55], [20, 60], [30, 60], [40, 55],
-          [40, 45], [30, 40], [20, 35], [10, 35], [0, 40], [-10, 45], [-10, 70]
-        ]]
-      },
-      {
-        name: 'Africa',
-        coordinates: [[
-          [-20, 35], [-15, 30], [-10, 20], [-5, 10], [0, 5], [10, 0], [20, -5],
-          [30, -10], [40, -15], [45, -25], [40, -30], [30, -35], [20, -35],
-          [15, -30], [10, -25], [5, -15], [0, -5], [-5, 5], [-10, 15], [-15, 25],
-          [-20, 35]
-        ]]
-      },
-      {
-        name: 'Asia',
-        coordinates: [[
-          [40, 70], [50, 70], [60, 75], [80, 75], [100, 70], [120, 60], [140, 50],
-          [145, 40], [140, 30], [130, 25], [120, 20], [110, 10], [100, 5], [90, 0],
-          [80, 0], [70, 5], [60, 10], [50, 20], [45, 30], [40, 40], [40, 70]
-        ]]
-      },
-      {
-        name: 'Australia',
-        coordinates: [[
-          [115, -10], [125, -12], [135, -15], [145, -20], [150, -30], [145, -40],
-          [135, -42], [125, -38], [115, -30], [110, -20], [115, -10]
-        ]]
-      }
-    ];
-
-    continentShapes.forEach((continent) => {
-      continents.append('path')
-        .datum({ type: 'Polygon', coordinates: continent.coordinates })
-        .attr('d', path as any)
-        .attr('fill', '#2a2a2a')
-        .attr('stroke', '#404040')
-        .attr('stroke-width', 1.5)
-        .attr('class', 'continent-shape');
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    setPosition({
+      x: e.clientX - dragStart.x,
+      y: e.clientY - dragStart.y
     });
+  };
 
-    const locationsGroup = g.append('g').attr('class', 'locations');
-
-    clientLocations.forEach((location) => {
-      const [x, y] = projection(location.coordinates) || [0, 0];
-
-      const locationGroup = locationsGroup.append('g')
-        .attr('transform', `translate(${x}, ${y})`);
-
-      locationGroup.append('circle')
-        .attr('r', 8)
-        .attr('fill', '#ffffff')
-        .attr('opacity', 0.2)
-        .attr('class', 'pulse-ring');
-
-      locationGroup.append('circle')
-        .attr('r', 6)
-        .attr('fill', '#ffffff')
-        .attr('stroke', '#ffffff')
-        .attr('stroke-width', 2)
-        .attr('class', 'location-pin')
-        .style('cursor', 'pointer')
-        .on('mouseenter', () => setHoveredLocation(location))
-        .on('mouseleave', () => setHoveredLocation(null))
-        .on('click', () => setActiveLocation(location));
-
-      locationGroup.append('circle')
-        .attr('r', 20)
-        .attr('fill', 'transparent')
-        .style('cursor', 'pointer')
-        .on('mouseenter', () => setHoveredLocation(location))
-        .on('mouseleave', () => setHoveredLocation(null))
-        .on('click', () => setActiveLocation(location));
-    });
-
-    const zoomBehavior = zoom<SVGSVGElement, unknown>()
-      .scaleExtent([1, 8])
-      .translateExtent([[-200, -200], [width + 200, height + 200]])
-      .on('zoom', (event) => {
-        g.attr('transform', event.transform);
-      });
-
-    svg.call(zoomBehavior as any);
-
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes pulse {
-        0%, 100% { r: 8; opacity: 0.2; }
-        50% { r: 20; opacity: 0; }
-      }
-      .pulse-ring {
-        animation: pulse 2s ease-out infinite;
-      }
-    `;
-    document.head.appendChild(style);
-
-    return () => {
-      style.remove();
-    };
-  }, []);
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
 
   const displayLocation = activeLocation || hoveredLocation;
 
@@ -210,13 +63,53 @@ export default function WorldMap() {
 
         <div className="relative">
           <div className="bg-gradient-to-br from-gray-900/50 to-black border border-gray-800 rounded-2xl p-8 backdrop-blur">
-            <div className="flex justify-center overflow-hidden rounded-lg">
-              <svg
-                ref={svgRef}
-                viewBox="0 0 1200 600"
-                className="w-full h-auto cursor-move"
-                style={{ maxHeight: '600px' }}
-              />
+            <div
+              ref={containerRef}
+              className="relative overflow-hidden rounded-lg bg-black"
+              style={{ height: '600px', cursor: isDragging ? 'grabbing' : 'grab' }}
+              onWheel={handleWheel}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+            >
+              <div
+                className="absolute inset-0 transition-transform duration-200"
+                style={{
+                  transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                  transformOrigin: 'center center'
+                }}
+              >
+                <img
+                  src="/Assets/very-high-quality-10000x5268px-no-borders-world-map-but-v0-z7mxzmiohwsc1.webp"
+                  alt="World Map"
+                  className="w-full h-auto select-none pointer-events-none"
+                  draggable={false}
+                  style={{ opacity: 0.7 }}
+                />
+
+                {clientLocations.map((location, index) => (
+                  <div
+                    key={index}
+                    className="absolute location-pin"
+                    style={{
+                      left: `${location.x}%`,
+                      top: `${location.y}%`,
+                      transform: 'translate(-50%, -50%)'
+                    }}
+                  >
+                    <div
+                      className="relative cursor-pointer"
+                      onMouseEnter={() => setHoveredLocation(location)}
+                      onMouseLeave={() => setHoveredLocation(null)}
+                      onClick={() => setActiveLocation(location)}
+                    >
+                      <div className="absolute inset-0 w-8 h-8 bg-white rounded-full animate-ping opacity-20" />
+                      <div className="relative w-4 h-4 bg-white rounded-full border-2 border-white shadow-2xl" />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="mt-8 text-center text-sm text-gray-500">
@@ -225,7 +118,7 @@ export default function WorldMap() {
           </div>
 
           {displayLocation && (
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-50">
               <div className="bg-white text-black px-6 py-4 rounded-lg shadow-2xl border-2 border-white animate-fadeIn">
                 <div className="text-sm font-mono font-semibold mb-1">{displayLocation.country}</div>
                 <div className="text-2xl font-bold">{displayLocation.name}</div>

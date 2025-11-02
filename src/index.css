@@ -101,7 +101,7 @@ body {
 
   @keyframes blinkCaret {
     from, to {
-      border-color: white;
+      border-color: transparent;
     }
     50% {
       border-color: white;
@@ -115,7 +115,6 @@ body {
     border-right: 0.15em solid white;
     white-space: nowrap;
     display: inline-block;
-    padding-bottom: 0.2em;
     animation:
       typewriter 3s steps(40, end) 0.5s 1 normal both,
       blinkCaret 0.75s step-end infinite;

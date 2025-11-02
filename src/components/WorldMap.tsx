@@ -21,10 +21,10 @@ export default function WorldMap() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold mb-4 tracking-tight">
-            [ CLIENTS_AROUND_THE_WORLD ]
+            Brands Around the World Trust Us
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            &gt; Trusted by brands across three continents, delivering results globally
+            From start-ups to established brands — our content drives revenue, not just views.
           </p>
         </div>
 

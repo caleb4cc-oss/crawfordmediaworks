@@ -28,7 +28,7 @@ export default function Hero() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className="text-xl font-bold">[ VIDEO_AGENCY ]</div>
+            <div className="text-xl font-bold">[ CRAWFORD_MEDIA_WORKS ]</div>
             <div className="flex gap-8">
               <button
                 onClick={() => scrollToSection('showcase')}
@@ -69,18 +69,21 @@ export default function Hero() {
         <div className="max-w-5xl mx-auto px-6 text-center">
           <div className="flex justify-center mb-8 overflow-visible">
             <h1 className="text-6xl md:text-7xl font-bold tracking-tight leading-relaxed typewriter-text">
-              Video Editing Agency
+              Crawford Media Works
             </h1>
           </div>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            &gt; We create high-performing video ads that convert. From editing to Meta ad management,
-            we turn raw footage into scroll-stopping content that drives sales.
+          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed font-semibold">
+            High-converting video ads that turn scrollers into buyers.
+          </p>
+
+          <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+            We take your raw footage and turn it into powerful, conversion-driven ad creatives designed for Meta, TikTok, and paid social performance.
           </p>
 
           <div className="flex justify-center items-center">
             <button className="px-8 py-4 bg-white text-black rounded font-semibold text-lg hover:bg-gray-200 transition-all hover:scale-105 transform duration-200 border-2 border-white">
-              [ BOOK_A_CALL ]
+              Book a Strategy Call
             </button>
           </div>
         </div>

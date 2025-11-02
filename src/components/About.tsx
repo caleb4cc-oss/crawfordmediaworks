@@ -3,12 +3,11 @@ export default function About() {
     <section id="about" className="py-32 bg-black">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <h2 className="text-5xl md:text-6xl font-bold mb-8">
-          More than editing—<br />storytelling with intent.
+          More than editing — we build ads that sell.
         </h2>
 
         <p className="text-2xl text-gray-300 leading-relaxed">
-          We apply performance-driven storytelling. Every cut, transition, and text overlay is intentional.
-          The goal is simple: engagement and conversion.
+          Anyone can cut clips. We craft messaging, narrative and pacing that drives action. Every frame, caption, transition and hook is intentional and backed by performance data.
         </p>
       </div>
     </section>

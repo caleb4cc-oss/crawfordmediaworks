@@ -4,20 +4,20 @@ export default function Services() {
   const services = [
     {
       icon: Scissors,
-      title: 'Video Editing',
-      description: 'High-end video ad editing optimised for attention, retention, and conversions.',
+      title: 'Video Ad Editing',
+      description: 'Scroll-stopping edits engineered to increase attention, retention, and conversions across paid social.',
     },
     {
       icon: TrendingUp,
-      title: 'Meta Ads Management',
-      description: 'Full-funnel Meta ad strategy, creative testing, scaling, and performance optimisation.',
+      title: 'Paid Social & Meta Ad Management',
+      description: 'End-to-end creative testing, funnel strategy, audience targeting, optimisation and scale.',
     },
   ];
 
   return (
     <section id="services" className="py-32 bg-black text-white">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-5xl md:text-6xl font-bold mb-20 text-center">Our Services</h2>
+        <h2 className="text-5xl md:text-6xl font-bold mb-20 text-center">What We Do</h2>
 
         <div className="grid md:grid-cols-2 gap-8">
           {services.map((service, index) => (

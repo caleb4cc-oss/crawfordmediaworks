@@ -1,5 +1,3 @@
-import { Play } from 'lucide-react';
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -13,7 +11,7 @@ export default function Hero() {
     <section className="hero">
       <div className="hero-bg" aria-hidden="true">
         <spline-viewer
-          id="hero-spline"
+          id="heroSpline"
           url="https://prod.spline.design/7K-GEL3EWZkk788g/scene.splinecode"
           loading="eager"
           interaction-prompt="none"

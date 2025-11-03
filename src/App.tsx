@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Hero from './components/Hero';
+import HeroInteractiveBg from './components/HeroInteractiveBg';
 import VideoShowcase from './components/VideoShowcase';
 import Services from './components/Services';
 import About from './components/About';
@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-visible relative">
-      <Hero />
+      <HeroInteractiveBg />
       <VideoShowcase onVideoClick={setSelectedVideo} />
       <Services />
       <About />

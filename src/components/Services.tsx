@@ -23,11 +23,11 @@ export default function Services() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white text-black p-8 sm:p-12 rounded-3xl hover:scale-105 transition-transform duration-300 cursor-pointer group"
+              className="bg-white text-black p-6 sm:p-12 rounded-3xl hover:scale-105 transition-transform duration-300 cursor-pointer group"
             >
-              <service.icon size={48} className="mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300" />
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">{service.title}</h3>
-              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">{service.description}</p>
+              <service.icon size={40} className="mb-3 sm:mb-6 group-hover:scale-110 transition-transform duration-300" />
+              <h3 className="text-xl sm:text-3xl font-bold mb-2 sm:mb-4">{service.title}</h3>
+              <p className="text-base sm:text-xl text-gray-700 leading-relaxed">{service.description}</p>
             </div>
           ))}
         </div>

@@ -15,10 +15,10 @@ export default function Hero() {
       </div>
 
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <div className="text-sm sm:text-xl font-bold">[ CRAWFORD_MEDIA_WORKS ]</div>
-            <div className="flex gap-2 sm:gap-8 text-xs sm:text-base">
+            <div className="text-[10px] sm:text-xl font-bold whitespace-nowrap">[ CRAWFORD_MEDIA_WORKS ]</div>
+            <div className="flex gap-1.5 sm:gap-8 text-[9px] sm:text-base whitespace-nowrap">
               <button
                 onClick={() => scrollToSection('showcase')}
                 className="text-gray-300 hover:text-white transition-colors"
@@ -56,8 +56,8 @@ export default function Hero() {
 
       <div className="hero-content">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <div className="flex justify-center mb-8 overflow-visible">
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-relaxed typewriter-text">
+          <div className="flex justify-center mb-8 overflow-visible px-4">
+            <h1 className="text-2xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-relaxed typewriter-text text-center">
               Crawford Media Works
             </h1>
           </div>

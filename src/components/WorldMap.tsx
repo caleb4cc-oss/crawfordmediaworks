@@ -39,11 +39,12 @@ export default function WorldMap() {
                 <img
                   src="/Assets/World_map_blank_without_borders.svg.png"
                   alt="World Map"
-                  className="w-full h-full object-contain select-none pointer-events-none"
+                  className="w-full h-full object-contain object-center select-none pointer-events-none"
                   draggable={false}
                   style={{
                     opacity: 0.4,
-                    filter: 'brightness(1.2) contrast(1.1)'
+                    filter: 'brightness(1.2) contrast(1.1)',
+                    objectPosition: 'center center'
                   }}
                 />
 

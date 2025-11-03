@@ -29,6 +29,68 @@ body {
     animation: fadeIn 0.3s ease-in-out;
   }
 
+  @keyframes motionBackground {
+    0% {
+      transform: translateX(0) translateY(0) scale(1);
+    }
+    25% {
+      transform: translateX(-5%) translateY(-5%) scale(1.1);
+    }
+    50% {
+      transform: translateX(-3%) translateY(5%) scale(1.05);
+    }
+    75% {
+      transform: translateX(5%) translateY(-3%) scale(1.08);
+    }
+    100% {
+      transform: translateX(0) translateY(0) scale(1);
+    }
+  }
+
+  .motion-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .motion-background::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 90% 20%, rgba(255, 255, 255, 0.12) 0%, transparent 45%),
+      radial-gradient(circle at 10% 60%, rgba(255, 255, 255, 0.06) 0%, transparent 35%);
+    animation: motionBackground 20s ease-in-out infinite;
+    filter: blur(60px);
+  }
+
+  .motion-background::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background:
+      radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 45%),
+      radial-gradient(circle at 30% 90%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 70% 10%, rgba(255, 255, 255, 0.07) 0%, transparent 40%),
+      radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.09) 0%, transparent 38%);
+    animation: motionBackground 25s ease-in-out infinite reverse;
+    filter: blur(80px);
+  }
+
   .hero {
     position: relative;
     min-height: 100vh;
@@ -226,401 +288,5 @@ body {
     top: 15%;
     right: 35%;
     animation: float4 31s ease-in-out infinite reverse;
-  }
-
-  .wind-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .wind-line {
-    position: absolute;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-    height: 1px;
-    width: 200px;
-    filter: blur(1px);
-    opacity: 0;
-    pointer-events: auto;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .wind-line:hover {
-    height: 2px;
-    filter: blur(0px);
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 1), transparent);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-  }
-
-  @keyframes windMove {
-    0% {
-      transform: translateX(100vw);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.8;
-    }
-    90% {
-      opacity: 0.8;
-    }
-    100% {
-      transform: translateX(-200px);
-      opacity: 0;
-    }
-  }
-
-  .wind-1 {
-    top: 15%;
-    animation: windMove 8s linear infinite;
-    animation-delay: 0s;
-  }
-
-  .wind-2 {
-    top: 25%;
-    animation: windMove 10s linear infinite;
-    animation-delay: 2s;
-    width: 150px;
-  }
-
-  .wind-3 {
-    top: 35%;
-    animation: windMove 12s linear infinite;
-    animation-delay: 4s;
-    width: 250px;
-  }
-
-  .wind-4 {
-    top: 45%;
-    animation: windMove 9s linear infinite;
-    animation-delay: 1s;
-    width: 180px;
-  }
-
-  .wind-5 {
-    top: 55%;
-    animation: windMove 11s linear infinite;
-    animation-delay: 3s;
-    width: 220px;
-  }
-
-  .wind-6 {
-    top: 65%;
-    animation: windMove 13s linear infinite;
-    animation-delay: 5s;
-    width: 170px;
-  }
-
-  .wind-7 {
-    top: 75%;
-    animation: windMove 10s linear infinite;
-    animation-delay: 2.5s;
-    width: 200px;
-  }
-
-  .wind-8 {
-    top: 85%;
-    animation: windMove 9.5s linear infinite;
-    animation-delay: 4.5s;
-    width: 190px;
-  }
-
-  .wind-9 {
-    top: 10%;
-    animation: windMove 11.5s linear infinite;
-    animation-delay: 6s;
-    width: 210px;
-  }
-
-  .wind-10 {
-    top: 20%;
-    animation: windMove 8.5s linear infinite;
-    animation-delay: 1.5s;
-    width: 160px;
-  }
-
-  .wind-11 {
-    top: 30%;
-    animation: windMove 13.5s linear infinite;
-    animation-delay: 3.5s;
-    width: 240px;
-  }
-
-  .wind-12 {
-    top: 40%;
-    animation: windMove 10.5s linear infinite;
-    animation-delay: 5.5s;
-    width: 195px;
-  }
-
-  .wind-13 {
-    top: 50%;
-    animation: windMove 9s linear infinite;
-    animation-delay: 0.5s;
-    width: 175px;
-  }
-
-  .wind-14 {
-    top: 60%;
-    animation: windMove 12.5s linear infinite;
-    animation-delay: 2.8s;
-    width: 230px;
-  }
-
-  .wind-15 {
-    top: 70%;
-    animation: windMove 11s linear infinite;
-    animation-delay: 4.8s;
-    width: 185px;
-  }
-
-  .wind-16 {
-    top: 80%;
-    animation: windMove 10.2s linear infinite;
-    animation-delay: 6.5s;
-    width: 205px;
-  }
-
-  .wind-17 {
-    top: 90%;
-    animation: windMove 9.8s linear infinite;
-    animation-delay: 1.8s;
-    width: 165px;
-  }
-
-  .wind-18 {
-    top: 5%;
-    animation: windMove 14s linear infinite;
-    animation-delay: 3.2s;
-    width: 220px;
-  }
-
-  .wind-19 {
-    top: 12%;
-    animation: windMove 8.8s linear infinite;
-    animation-delay: 5.2s;
-    width: 155px;
-  }
-
-  .wind-20 {
-    top: 22%;
-    animation: windMove 11.8s linear infinite;
-    animation-delay: 0.8s;
-    width: 200px;
-  }
-
-  .wind-21 {
-    top: 32%;
-    animation: windMove 10.8s linear infinite;
-    animation-delay: 2.2s;
-    width: 215px;
-  }
-
-  .wind-22 {
-    top: 42%;
-    animation: windMove 13.2s linear infinite;
-    animation-delay: 4.2s;
-    width: 190px;
-  }
-
-  .wind-23 {
-    top: 52%;
-    animation: windMove 9.2s linear infinite;
-    animation-delay: 6.2s;
-    width: 180px;
-  }
-
-  .wind-24 {
-    top: 62%;
-    animation: windMove 12.2s linear infinite;
-    animation-delay: 1.2s;
-    width: 235px;
-  }
-
-  .wind-25 {
-    top: 72%;
-    animation: windMove 11.2s linear infinite;
-    animation-delay: 3.8s;
-    width: 170px;
-  }
-
-  .wind-26 {
-    top: 8%;
-    animation: windMove 10.5s linear infinite;
-    animation-delay: 2.3s;
-    width: 225px;
-  }
-
-  .wind-27 {
-    top: 18%;
-    animation: windMove 12.8s linear infinite;
-    animation-delay: 4.7s;
-    width: 195px;
-  }
-
-  .wind-28 {
-    top: 28%;
-    animation: windMove 9.3s linear infinite;
-    animation-delay: 1.1s;
-    width: 165px;
-  }
-
-  .wind-29 {
-    top: 38%;
-    animation: windMove 13.8s linear infinite;
-    animation-delay: 5.9s;
-    width: 245px;
-  }
-
-  .wind-30 {
-    top: 48%;
-    animation: windMove 11.5s linear infinite;
-    animation-delay: 3.4s;
-    width: 210px;
-  }
-
-  .wind-31 {
-    top: 58%;
-    animation: windMove 10.1s linear infinite;
-    animation-delay: 0.3s;
-    width: 180px;
-  }
-
-  .wind-32 {
-    top: 68%;
-    animation: windMove 12.1s linear infinite;
-    animation-delay: 6.7s;
-    width: 220px;
-  }
-
-  .wind-33 {
-    top: 78%;
-    animation: windMove 9.7s linear infinite;
-    animation-delay: 2.9s;
-    width: 175px;
-  }
-
-  .wind-34 {
-    top: 88%;
-    animation: windMove 11.9s linear infinite;
-    animation-delay: 4.1s;
-    width: 205px;
-  }
-
-  .wind-35 {
-    top: 3%;
-    animation: windMove 13.3s linear infinite;
-    animation-delay: 1.9s;
-    width: 230px;
-  }
-
-  .wind-36 {
-    top: 13%;
-    animation: windMove 8.9s linear infinite;
-    animation-delay: 5.3s;
-    width: 160px;
-  }
-
-  .wind-37 {
-    top: 23%;
-    animation: windMove 10.7s linear infinite;
-    animation-delay: 0.7s;
-    width: 190px;
-  }
-
-  .wind-38 {
-    top: 33%;
-    animation: windMove 12.4s linear infinite;
-    animation-delay: 3.1s;
-    width: 215px;
-  }
-
-  .wind-39 {
-    top: 43%;
-    animation: windMove 9.6s linear infinite;
-    animation-delay: 6.1s;
-    width: 185px;
-  }
-
-  .wind-40 {
-    top: 53%;
-    animation: windMove 11.3s linear infinite;
-    animation-delay: 2.6s;
-    width: 200px;
-  }
-
-  .wind-41 {
-    top: 63%;
-    animation: windMove 13.6s linear infinite;
-    animation-delay: 4.9s;
-    width: 240px;
-  }
-
-  .wind-42 {
-    top: 73%;
-    animation: windMove 10.9s linear infinite;
-    animation-delay: 1.4s;
-    width: 195px;
-  }
-
-  .wind-43 {
-    top: 83%;
-    animation: windMove 12.6s linear infinite;
-    animation-delay: 5.7s;
-    width: 225px;
-  }
-
-  .wind-44 {
-    top: 93%;
-    animation: windMove 9.4s linear infinite;
-    animation-delay: 3.6s;
-    width: 170px;
-  }
-
-  .wind-45 {
-    top: 6%;
-    animation: windMove 11.7s linear infinite;
-    animation-delay: 0.9s;
-    width: 210px;
-  }
-
-  .wind-46 {
-    top: 16%;
-    animation: windMove 13.1s linear infinite;
-    animation-delay: 2.4s;
-    width: 235px;
-  }
-
-  .wind-47 {
-    top: 26%;
-    animation: windMove 8.7s linear infinite;
-    animation-delay: 4.4s;
-    width: 155px;
-  }
-
-  .wind-48 {
-    top: 36%;
-    animation: windMove 10.3s linear infinite;
-    animation-delay: 6.8s;
-    width: 190px;
-  }
-
-  .wind-49 {
-    top: 46%;
-    animation: windMove 12.9s linear infinite;
-    animation-delay: 1.6s;
-    width: 220px;
-  }
-
-  .wind-50 {
-    top: 56%;
-    animation: windMove 9.1s linear infinite;
-    animation-delay: 3.9s;
-    width: 175px;
   }
 }

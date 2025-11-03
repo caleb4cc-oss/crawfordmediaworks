@@ -2,12 +2,12 @@ import { useEffect, useRef } from 'react';
 import { Play } from 'lucide-react';
 
 const videos = [
-  { id: 1, title: 'E-commerce Ad', thumbnail: 'https://images.pexels.com/photos/3584927/pexels-photo-3584927.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { id: 2, title: 'Product Launch', thumbnail: 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { id: 3, title: 'Brand Story', thumbnail: 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { id: 4, title: 'Social Campaign', thumbnail: 'https://images.pexels.com/photos/3906810/pexels-photo-3906810.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { id: 5, title: 'Testimonial', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { id: 6, title: 'Product Demo', thumbnail: 'https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 1, title: 'E-commerce Ad', thumbnail: 'https://images.pexels.com/photos/3584927/pexels-photo-3584927.jpeg?auto=compress&cs=tinysrgb&w=800', videoUrl: '' },
+  { id: 2, title: 'UGC Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.18.23.png', videoUrl: 'https://www.dropbox.com/scl/fi/ps66dza2myg2q42j0ao4f/UGC-Ad.mp4?rlkey=uhof7947voxb4bpz1vzu52hr5&st=0q4134ys&dl=0' },
+  { id: 3, title: 'Brand Story', thumbnail: 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=800', videoUrl: '' },
+  { id: 4, title: 'Social Campaign', thumbnail: 'https://images.pexels.com/photos/3906810/pexels-photo-3906810.jpeg?auto=compress&cs=tinysrgb&w=800', videoUrl: '' },
+  { id: 5, title: 'Testimonial', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800', videoUrl: '' },
+  { id: 6, title: 'Product Demo', thumbnail: 'https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=800', videoUrl: '' },
 ];
 
 interface VideoShowcaseProps {
@@ -56,7 +56,13 @@ export default function VideoShowcase({ onVideoClick }: VideoShowcaseProps) {
           <div
             key={`${video.id}-${index}`}
             className="flex-shrink-0 w-[400px] h-[600px] relative group cursor-pointer"
-            onClick={() => onVideoClick(video.thumbnail)}
+            onClick={() => {
+              if (video.videoUrl) {
+                window.open(video.videoUrl, '_blank');
+              } else {
+                onVideoClick(video.thumbnail);
+              }
+            }}
           >
             <img
               src={video.thumbnail}

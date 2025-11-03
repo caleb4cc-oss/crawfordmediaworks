@@ -8,7 +8,7 @@ interface ClientLocation {
 }
 
 const clientLocations: ClientLocation[] = [
-  { name: '', country: 'United Kingdom', x: 47, y: 19 },
+  { name: '', country: 'United Kingdom', x: 48, y: 19 },
   { name: '', country: 'United States', x: 30, y: 25 },
   { name: '', country: 'United Arab Emirates', x: 57, y: 33 }
 ];

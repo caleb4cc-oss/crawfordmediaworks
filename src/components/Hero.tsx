@@ -17,11 +17,19 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-bg" aria-hidden="true">
-        <spline-viewer
-          id="heroSpline"
-          url="https://prod.spline.design/7K-GEL3EWZkk788g/scene.splinecode"
-          loading="eager"
-          interaction-prompt="none"
+        <iframe
+          src="https://my.spline.design/animatedgradientbackgroundforweb-eHcbrpkT6HsE8FZDKPKknNtd/"
+          frameBorder="0"
+          width="100%"
+          height="100%"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            border: 'none'
+          }}
         />
       </div>
 

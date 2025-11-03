@@ -18,8 +18,7 @@ export default function WorldMap() {
 
   return (
     <section id="clients" className="py-24 px-6 bg-black relative overflow-hidden">
-      <div className="lightning-bg-all" />
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold mb-4 tracking-tight">
             Brands Around the World Trust Us
@@ -30,9 +29,10 @@ export default function WorldMap() {
         </div>
 
         <div className="relative">
+          <div className="bg-gradient-to-br from-gray-900/50 to-black border border-gray-800 rounded-2xl p-8 backdrop-blur">
             <div
               ref={containerRef}
-              className="relative overflow-hidden rounded-lg"
+              className="relative overflow-hidden rounded-lg bg-black"
               style={{ height: '600px' }}
             >
               <div className="absolute inset-0">
@@ -121,6 +121,8 @@ export default function WorldMap() {
                 ))}
               </div>
             </div>
+
+          </div>
         </div>
       </div>
     </section>

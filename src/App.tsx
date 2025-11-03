@@ -11,8 +11,7 @@ function App() {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-visible relative">
-      <div className="lightning-bg-all" />
+    <div className="min-h-screen bg-black text-white overflow-visible">
       <Hero />
       <VideoShowcase onVideoClick={setSelectedVideo} />
       <Services />

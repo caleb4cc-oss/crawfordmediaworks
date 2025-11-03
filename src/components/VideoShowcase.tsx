@@ -67,7 +67,7 @@ export default function VideoShowcase({ onVideoClick }: VideoShowcaseProps) {
             <img
               src={video.thumbnail}
               alt={video.title}
-              className="w-full h-full object-cover rounded-2xl"
+              className="w-full h-full object-cover rounded-2xl scale-110"
             />
             <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 rounded-2xl flex items-center justify-center">
               <div className="transform scale-0 group-hover:scale-100 transition-transform duration-300">

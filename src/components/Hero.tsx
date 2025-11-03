@@ -1,10 +1,4 @@
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'spline-viewer': any;
-    }
-  }
-}
+import Spline from '@splinetool/react-spline';
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -17,12 +11,7 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-bg" aria-hidden="true">
-        <spline-viewer
-          id="heroSpline"
-          url="https://prod.spline.design/7K-GEL3EWZkk788g/scene.splinecode"
-          loading="eager"
-          interaction-prompt="none"
-        />
+        <Spline scene="https://prod.spline.design/W43q4Hg6Ghj1QPJt/scene.splinecode" />
       </div>
 
       <div className="floating-lines" aria-hidden="true">

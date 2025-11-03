@@ -2,8 +2,8 @@ export default function CTA() {
   return (
     <section id="contact" className="py-20 sm:py-32 bg-black border-t border-gray-900">
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-8 sm:mb-12 leading-tight">
-          Ready to increase sales<br />with high-performing video ads?
+        <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-8 sm:mb-12">
+          Ready to increase sales with high-performing video ads?
         </h2>
 
         <a

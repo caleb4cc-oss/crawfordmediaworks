@@ -35,20 +35,15 @@ export default function WorldMap() {
               className="relative overflow-hidden rounded-lg bg-black"
               style={{ height: '600px' }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+              <div className="absolute inset-0 bg-gray-950">
                 <img
                   src="/Assets/World_map_blank_without_borders.svg.png"
                   alt="World Map"
                   className="w-full h-full object-contain select-none pointer-events-none"
                   draggable={false}
                   style={{
-                    opacity: 0.8,
-                    filter: 'brightness(0.8) contrast(1.3) invert(1)',
-                    mixBlendMode: 'screen'
-                  }}
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
+                    opacity: 0.4,
+                    filter: 'brightness(1.2) contrast(1.1)'
                   }}
                 />
 

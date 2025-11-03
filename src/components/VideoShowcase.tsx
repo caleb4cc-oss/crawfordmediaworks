@@ -78,7 +78,7 @@ export default function VideoShowcase({ onVideoClick }: VideoShowcaseProps) {
               </div>
             </div>
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent rounded-b-2xl">
-              <h3 className={`text-2xl font-semibold ${video.title === 'Street Interview Ad' ? 'pl-4' : ''}`}>{video.title}</h3>
+              <h3 className="text-2xl font-semibold whitespace-nowrap">{video.title}</h3>
             </div>
           </div>
         ))}

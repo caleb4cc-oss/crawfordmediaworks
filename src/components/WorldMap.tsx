@@ -1,5 +1,3 @@
-import { useRef, useState, useEffect } from 'react';
-
 interface ClientLocation {
   name: string;
   country: string;
@@ -14,8 +12,6 @@ const clientLocations: ClientLocation[] = [
 ];
 
 export default function WorldMap() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
   return (
     <section id="clients" className="py-16 sm:py-24 px-6 bg-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -31,97 +27,42 @@ export default function WorldMap() {
         <div className="relative">
           <div className="bg-gradient-to-br from-gray-900/50 to-black border border-gray-800 rounded-2xl p-4 sm:p-8 backdrop-blur">
             <div
-              ref={containerRef}
-              className="relative overflow-hidden rounded-lg bg-black"
-              style={{ height: '400px', maxHeight: '60vh' }}
+              className="relative rounded-lg bg-black overflow-hidden"
+              style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}
             >
-              <div className="absolute inset-0 bg-gray-950">
-                <img
-                  src="/Assets/World_map_blank_without_borders.svg.png"
-                  alt="World Map"
-                  className="w-full h-full object-contain object-center select-none pointer-events-none"
-                  draggable={false}
+              <img
+                src="/Assets/World_map_blank_without_borders.svg.png"
+                alt="World Map"
+                className="select-none pointer-events-none"
+                draggable={false}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  objectFit: 'contain',
+                  opacity: 0.4,
+                  filter: 'brightness(1.2) contrast(1.1)'
+                }}
+              />
+
+              {clientLocations.map((location, index) => (
+                <div
+                  key={index}
+                  className="absolute"
                   style={{
-                    opacity: 0.4,
-                    filter: 'brightness(1.2) contrast(1.1)',
-                    objectPosition: 'center center'
+                    position: 'absolute',
+                    left: `${location.x}%`,
+                    top: `${location.y}%`,
+                    transform: 'translate(-50%, -50%)'
                   }}
-                />
-
-                {/* Gridlines */}
-                <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                  {/* Vertical lines (X-axis) */}
-                  {Array.from({ length: 11 }).map((_, i) => {
-                    const x = i * 10;
-                    return (
-                      <g key={`v-${i}`}>
-                        <line
-                          x1={`${x}%`}
-                          y1="0%"
-                          x2={`${x}%`}
-                          y2="100%"
-                          stroke="rgba(255, 255, 255, 0.15)"
-                          strokeWidth="1"
-                        />
-                        <text
-                          x={`${x}%`}
-                          y="98%"
-                          fill="rgba(255, 255, 255, 0.5)"
-                          fontSize="10"
-                          textAnchor="middle"
-                        >
-                          {x}
-                        </text>
-                      </g>
-                    );
-                  })}
-
-                  {/* Horizontal lines (Y-axis) */}
-                  {Array.from({ length: 11 }).map((_, i) => {
-                    const y = i * 10;
-                    return (
-                      <g key={`h-${i}`}>
-                        <line
-                          x1="0%"
-                          y1={`${y}%`}
-                          x2="100%"
-                          y2={`${y}%`}
-                          stroke="rgba(255, 255, 255, 0.15)"
-                          strokeWidth="1"
-                        />
-                        <text
-                          x="2%"
-                          y={`${y}%`}
-                          fill="rgba(255, 255, 255, 0.5)"
-                          fontSize="10"
-                          dominantBaseline="middle"
-                        >
-                          {y}
-                        </text>
-                      </g>
-                    );
-                  })}
-                </svg>
-
-                {clientLocations.map((location, index) => (
-                  <div
-                    key={index}
-                    className="absolute"
-                    style={{
-                      left: `${location.x}%`,
-                      top: `${location.y}%`,
-                      transform: 'translate(-50%, -50%)'
-                    }}
-                  >
-                    <div className="relative">
-                      <div className="absolute inset-0 w-1.5 h-1.5 sm:w-8 sm:h-8 bg-white rounded-full animate-ping opacity-20" />
-                      <div className="relative w-0.5 h-0.5 sm:w-4 sm:h-4 bg-white rounded-full border-2 border-white shadow-2xl" />
-                    </div>
+                >
+                  <div className="relative">
+                    <div className="absolute inset-0 w-1.5 h-1.5 sm:w-8 sm:h-8 bg-white rounded-full animate-ping opacity-20" />
+                    <div className="relative w-0.5 h-0.5 sm:w-4 sm:h-4 bg-white rounded-full border-2 border-white shadow-2xl" />
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-
           </div>
         </div>
       </div>

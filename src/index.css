@@ -43,6 +43,23 @@ body {
     pointer-events: none;
   }
 
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image:
+      linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.03) 25%, transparent 26%),
+      linear-gradient(45deg, transparent 74%, rgba(255, 255, 255, 0.05) 75%, transparent 76%),
+      linear-gradient(160deg, transparent 0%, rgba(255, 255, 255, 0.04) 40%, transparent 41%),
+      linear-gradient(70deg, transparent 60%, rgba(255, 255, 255, 0.06) 61%, transparent 62%),
+      linear-gradient(200deg, transparent 30%, rgba(255, 255, 255, 0.03) 31%, transparent 32%);
+    background-size: 200% 200%, 150% 150%, 300% 300%, 180% 180%, 250% 250%;
+    background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%, 100% 0%;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
   .hero-bg spline-viewer {
     position: absolute;
     inset: 0;

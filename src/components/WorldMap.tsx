@@ -8,9 +8,9 @@ interface ClientLocation {
 }
 
 const clientLocations: ClientLocation[] = [
-  { name: '', country: 'United Kingdom', x: 47, y: 19 },
-  { name: '', country: 'United States', x: 20, y: 25 },
-  { name: '', country: 'United Arab Emirates', x: 62.5, y: 35 }
+  { name: '', country: 'United Kingdom', x: 47, y: 37 },
+  { name: '', country: 'United States', x: 20, y: 40 },
+  { name: '', country: 'United Arab Emirates', x: 63, y: 43 }
 ];
 
 export default function WorldMap() {
@@ -114,8 +114,8 @@ export default function WorldMap() {
                     }}
                   >
                     <div className="relative">
-                      <div className="absolute inset-0 w-8 h-8 bg-white rounded-full animate-ping opacity-20" />
-                      <div className="relative w-4 h-4 bg-white rounded-full border-2 border-white shadow-2xl" />
+                      <div className="absolute inset-0 w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full animate-ping opacity-20" />
+                      <div className="relative w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full border-2 border-white shadow-2xl" />
                     </div>
                   </div>
                 ))}

@@ -53,19 +53,17 @@ export default function WorldMap() {
               {clientLocations.map((location, index) => (
                 <div
                   key={index}
-                  className="absolute cursor-pointer rounded-full bg-white shadow-lg"
+                  className="absolute cursor-pointer rounded-full bg-white shadow-lg w-2 h-2 sm:w-3.5 sm:h-3.5"
                   style={{
                     position: 'absolute',
                     left: `${location.x}%`,
                     top: `${location.y}%`,
                     transform: 'translate(-50%, -50%)',
-                    width: '14px',
-                    height: '14px',
-                    boxShadow: '0 0 0 3px rgba(255,255,255,.25), 0 6px 16px rgba(0,0,0,.35)'
+                    boxShadow: '0 0 0 2px rgba(255,255,255,.25), 0 4px 12px rgba(0,0,0,.35)'
                   }}
                 >
                   <div className="relative">
-                    <div className="absolute inset-0 w-8 h-8 bg-white rounded-full animate-ping opacity-20" style={{ top: '-7px', left: '-7px' }} />
+                    <div className="absolute inset-0 w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full animate-ping opacity-20" style={{ top: '-10px', left: '-10px' }} />
                   </div>
                 </div>
               ))}

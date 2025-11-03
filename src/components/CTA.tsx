@@ -3,7 +3,7 @@ export default function CTA() {
     <section id="contact" className="py-20 sm:py-32 bg-black border-t border-gray-900">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-8 sm:mb-12 leading-tight">
-          Ready to increase sales with<br />high-performing video ads?
+          Ready to increase sales<br />with high-performing video ads?
         </h2>
 
         <a

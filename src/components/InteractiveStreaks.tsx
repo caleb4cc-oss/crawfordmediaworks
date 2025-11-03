@@ -68,7 +68,7 @@ export default function InteractiveStreaks() {
         const px = blob.x + Math.cos(angle) * distance;
         const py = blob.y + Math.sin(angle) * distance;
 
-        const speed = 0.3 + Math.random() * 0.5;
+        const speed = 0.05 + Math.random() * 0.1;
         const particleAngle = Math.random() * Math.PI * 2;
 
         particles.push({
@@ -79,7 +79,7 @@ export default function InteractiveStreaks() {
           opacity: blob.opacity * (0.5 + Math.random() * 0.5),
           size: 1 + Math.random() * 2,
           life: 0,
-          maxLife: 60 + Math.random() * 120,
+          maxLife: 300 + Math.random() * 300,
         });
       }
 

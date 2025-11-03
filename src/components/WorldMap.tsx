@@ -114,8 +114,8 @@ export default function WorldMap() {
                     }}
                   >
                     <div className="relative">
-                      <div className="absolute inset-0 w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full animate-ping opacity-20" />
-                      <div className="relative w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full border-2 border-white shadow-2xl" />
+                      <div className="absolute inset-0 w-1.5 h-1.5 sm:w-8 sm:h-8 bg-white rounded-full animate-ping opacity-20" />
+                      <div className="relative w-0.5 h-0.5 sm:w-4 sm:h-4 bg-white rounded-full border-2 border-white shadow-2xl" />
                     </div>
                   </div>
                 ))}

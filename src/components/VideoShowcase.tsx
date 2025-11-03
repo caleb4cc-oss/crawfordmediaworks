@@ -53,7 +53,8 @@ export default function VideoShowcase({ onVideoClick }: VideoShowcaseProps) {
         {[...videos, ...videos].map((video, index) => (
           <div
             key={`${video.id}-${index}`}
-            className="flex-shrink-0 w-[400px] h-[600px] relative group cursor-pointer"
+            className="flex-shrink-0 relative group cursor-pointer"
+            style={{ width: '337.5px', height: '600px', aspectRatio: '9/16' }}
             onClick={() => {
               if (video.videoUrl) {
                 window.open(video.videoUrl, '_blank');

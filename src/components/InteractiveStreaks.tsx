@@ -38,12 +38,12 @@ export default function InteractiveStreaks() {
         y: Math.random() * canvas.height,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        radius: 300 + Math.random() * 400,
-        opacity: 0.08 + Math.random() * 0.12,
+        radius: 120 + Math.random() * 180,
+        opacity: 0.15 + Math.random() * 0.25,
       };
     };
 
-    blobsRef.current = Array.from({ length: 12 }, createBlob);
+    blobsRef.current = Array.from({ length: 8 }, createBlob);
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
@@ -53,32 +53,32 @@ export default function InteractiveStreaks() {
         const dy = e.clientY - blob.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < 300) {
-          const force = (300 - distance) / 300;
-          blob.vx += (dx / distance) * force * 0.3;
-          blob.vy += (dy / distance) * force * 0.3;
+        if (distance < 250) {
+          const force = (250 - distance) / 250;
+          blob.vx -= (dx / distance) * force * 0.8;
+          blob.vy -= (dy / distance) * force * 0.8;
         }
       });
     };
 
     const handleClick = (e: MouseEvent) => {
-      const newBlobs = Array.from({ length: 2 }, () => {
+      const newBlobs = Array.from({ length: 3 }, () => {
         const angle = Math.random() * Math.PI * 2;
-        const speed = 0.8 + Math.random() * 1.2;
+        const speed = 1.2 + Math.random() * 2;
         return {
           x: e.clientX,
           y: e.clientY,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
-          radius: 350 + Math.random() * 400,
-          opacity: 0.25 + Math.random() * 0.15,
+          radius: 100 + Math.random() * 150,
+          opacity: 0.35 + Math.random() * 0.25,
         };
       });
       blobsRef.current.push(...newBlobs);
 
       setTimeout(() => {
-        blobsRef.current = blobsRef.current.slice(2);
-      }, 4000);
+        blobsRef.current = blobsRef.current.slice(3);
+      }, 3000);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -112,8 +112,8 @@ export default function InteractiveStreaks() {
           blob.x, blob.y, blob.radius
         );
         gradient.addColorStop(0, `rgba(255, 255, 255, ${blob.opacity})`);
-        gradient.addColorStop(0.4, `rgba(255, 255, 255, ${blob.opacity * 0.6})`);
-        gradient.addColorStop(0.7, `rgba(255, 255, 255, ${blob.opacity * 0.3})`);
+        gradient.addColorStop(0.3, `rgba(255, 255, 255, ${blob.opacity * 0.7})`);
+        gradient.addColorStop(0.6, `rgba(255, 255, 255, ${blob.opacity * 0.3})`);
         gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
         ctx.fillStyle = gradient;

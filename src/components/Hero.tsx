@@ -17,8 +17,8 @@ export default function Hero() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className="text-xl font-bold">[ CRAWFORD_MEDIA_WORKS ]</div>
-            <div className="flex gap-8">
+            <div className="text-sm sm:text-xl font-bold">[ CRAWFORD_MEDIA_WORKS ]</div>
+            <div className="flex gap-2 sm:gap-8 text-xs sm:text-base">
               <button
                 onClick={() => scrollToSection('showcase')}
                 className="text-gray-300 hover:text-white transition-colors"
@@ -57,16 +57,16 @@ export default function Hero() {
       <div className="hero-content">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <div className="flex justify-center mb-8 overflow-visible">
-            <h1 className="text-6xl md:text-7xl font-bold tracking-tight leading-relaxed typewriter-text">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-relaxed typewriter-text">
               Crawford Media Works
             </h1>
           </div>
 
-          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-4xl mx-auto font-semibold whitespace-nowrap">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 max-w-4xl mx-auto font-semibold">
             High-converting video ads that turn scrollers into buyers.
           </p>
 
-          <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
             We take your raw footage and turn it into powerful, conversion-driven ad creatives designed for Meta, TikTok, and paid social performance.
           </p>
 
@@ -75,7 +75,7 @@ export default function Hero() {
               href="https://calendly.com/crawfordmediaworks/crawford-media"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-white text-black rounded font-semibold text-lg hover:bg-gray-200 transition-all hover:scale-105 transform duration-200 border-2 border-white inline-block"
+              className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded font-semibold text-base sm:text-lg hover:bg-gray-200 transition-all hover:scale-105 transform duration-200 border-2 border-white inline-block"
             >
               Book a Strategy Call
             </a>

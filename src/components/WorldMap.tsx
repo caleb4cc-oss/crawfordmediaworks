@@ -17,23 +17,23 @@ export default function WorldMap() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="clients" className="py-24 px-6 bg-black relative overflow-hidden">
+    <section id="clients" className="py-16 sm:py-24 px-6 bg-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-4 tracking-tight">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 tracking-tight">
             Brands Around the World Trust Us
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
             From start-ups to established brands — our content drives revenue, not just views.
           </p>
         </div>
 
         <div className="relative">
-          <div className="bg-gradient-to-br from-gray-900/50 to-black border border-gray-800 rounded-2xl p-8 backdrop-blur">
+          <div className="bg-gradient-to-br from-gray-900/50 to-black border border-gray-800 rounded-2xl p-4 sm:p-8 backdrop-blur">
             <div
               ref={containerRef}
               className="relative overflow-hidden rounded-lg bg-black"
-              style={{ height: '600px' }}
+              style={{ height: '400px', maxHeight: '60vh' }}
             >
               <div className="absolute inset-0 bg-gray-950">
                 <img

@@ -39,22 +39,22 @@ export default function VideoShowcase({ onVideoClick }: VideoShowcaseProps) {
   }, []);
 
   return (
-    <section id="showcase" className="py-20 bg-black overflow-hidden relative">
-      <div className="mb-12 px-6 max-w-7xl mx-auto relative z-10">
-        <h2 className="text-5xl md:text-6xl font-bold mb-4">Our Work</h2>
-        <p className="text-xl text-gray-400">Real ad creatives. Real results.</p>
+    <section id="showcase" className="py-16 sm:py-20 bg-black overflow-hidden relative">
+      <div className="mb-8 sm:mb-12 px-6 max-w-7xl mx-auto relative z-10">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-3 sm:mb-4">Our Work</h2>
+        <p className="text-base sm:text-lg md:text-xl text-gray-400">Real ad creatives. Real results.</p>
       </div>
 
       <div
         ref={scrollRef}
-        className="flex gap-8 px-6 overflow-x-auto scrollbar-hide scroll-smooth relative z-10"
+        className="flex gap-4 sm:gap-8 px-6 overflow-x-auto scrollbar-hide scroll-smooth relative z-10"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {[...videos, ...videos].map((video, index) => (
           <div
             key={`${video.id}-${index}`}
             className="flex-shrink-0 relative group cursor-pointer overflow-hidden rounded-2xl"
-            style={{ width: '337.5px', height: '600px' }}
+            style={{ width: '250px', height: '444px', maxWidth: '80vw', maxHeight: '70vh' }}
             onClick={() => {
               if (video.videoUrl) {
                 window.open(video.videoUrl, '_blank');
@@ -77,8 +77,8 @@ export default function VideoShowcase({ onVideoClick }: VideoShowcaseProps) {
                 </div>
               </div>
             </div>
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent rounded-b-2xl">
-              <h3 className="text-2xl font-semibold whitespace-nowrap">{video.title}</h3>
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black to-transparent rounded-b-2xl">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-semibold whitespace-nowrap">{video.title}</h3>
             </div>
           </div>
         ))}

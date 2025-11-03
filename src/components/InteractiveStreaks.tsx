@@ -33,14 +33,14 @@ export default function InteractiveStreaks() {
 
     const createStreak = (): Streak => {
       const angle = Math.random() * Math.PI * 2;
-      const speed = 0.3 + Math.random() * 0.7;
+      const speed = 0.15 + Math.random() * 0.35;
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         length: 40 + Math.random() * 80,
-        opacity: 0.1 + Math.random() * 0.3,
+        opacity: 0.05 + Math.random() * 0.15,
         thickness: 1 + Math.random() * 2,
       };
     };
@@ -57,8 +57,8 @@ export default function InteractiveStreaks() {
 
         if (distance < 200) {
           const force = (200 - distance) / 200;
-          streak.vx += (dx / distance) * force * 0.5;
-          streak.vy += (dy / distance) * force * 0.5;
+          streak.vx += (dx / distance) * force * 0.25;
+          streak.vy += (dy / distance) * force * 0.25;
         }
       });
     };
@@ -66,14 +66,14 @@ export default function InteractiveStreaks() {
     const handleClick = (e: MouseEvent) => {
       const newStreaks = Array.from({ length: 5 }, () => {
         const angle = Math.random() * Math.PI * 2;
-        const speed = 2 + Math.random() * 3;
+        const speed = 1 + Math.random() * 1.5;
         return {
           x: e.clientX,
           y: e.clientY,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
           length: 60 + Math.random() * 100,
-          opacity: 0.4 + Math.random() * 0.4,
+          opacity: 0.2 + Math.random() * 0.2,
           thickness: 2 + Math.random() * 3,
         };
       });
@@ -110,7 +110,7 @@ export default function InteractiveStreaks() {
         const speedMagnitude = Math.sqrt(streak.vx * streak.vx + streak.vy * streak.vy);
         if (speedMagnitude < 0.1) {
           const angle = Math.random() * Math.PI * 2;
-          const speed = 0.3 + Math.random() * 0.5;
+          const speed = 0.15 + Math.random() * 0.25;
           streak.vx = Math.cos(angle) * speed;
           streak.vy = Math.sin(angle) * speed;
         }

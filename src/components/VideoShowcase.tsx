@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Play } from 'lucide-react';
 
 const videos = [
+  { id: 2, title: 'UGC Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 22.40.07.png', videoUrl: 'https://www.dropbox.com/scl/fi/ps66dza2myg2q42j0ao4f/UGC-Ad.mp4?rlkey=uhof7947voxb4bpz1vzu52hr5&st=dderc1z7&dl=0' },
   { id: 3, title: 'Podcast Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.20.17.png', videoUrl: 'https://www.dropbox.com/scl/fi/ldqezvdtqceluiwr50aib/Podcast-Ad.mp4?rlkey=8kojuvt6huz2oyip85w0bs13q&st=nj3e99e2&dl=0' },
   { id: 4, title: 'Street Interview Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.19.21.png', videoUrl: 'https://www.dropbox.com/scl/fi/kv1c3ho0dxg534z5ebm5j/Chicken-Run-Vox-Pop.mp4?rlkey=d2n639spa278qi2bos1g8bonc&st=a5hk0ag8&dl=0' },
   { id: 5, title: 'Founder Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.21.13.png', videoUrl: 'https://www.dropbox.com/scl/fi/o53ws008f8mb17wjjndmo/Founder-Ad.mp4?rlkey=1aa9ffy7if8pjkg2e66oe2kb9&st=9ezocjol&dl=0' },

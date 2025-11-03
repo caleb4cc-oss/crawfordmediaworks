@@ -1,5 +1,3 @@
-import InteractiveStreaks from './InteractiveStreaks';
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -26,14 +24,6 @@ export default function Hero() {
           interaction-prompt="none"
         />
       </div>
-
-      <div className="floating-lines" aria-hidden="true">
-        {[...Array(12)].map((_, i) => (
-          <div key={i} className={`line line-${i + 1}`}></div>
-        ))}
-      </div>
-
-      <InteractiveStreaks />
 
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-4">

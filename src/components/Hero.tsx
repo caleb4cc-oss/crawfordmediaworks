@@ -1,10 +1,4 @@
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'spline-viewer': any;
-    }
-  }
-}
+import HeroInteractiveBg from './HeroInteractiveBg';
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -17,12 +11,7 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-bg" aria-hidden="true">
-        <spline-viewer
-          id="heroSpline"
-          url="https://prod.spline.design/7K-GEL3EWZkk788g/scene.splinecode"
-          loading="eager"
-          interaction-prompt="none"
-        />
+        <HeroInteractiveBg />
       </div>
 
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">

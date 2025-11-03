@@ -18,7 +18,8 @@ export default function WorldMap() {
 
   return (
     <section id="clients" className="py-24 px-6 bg-black relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <div className="lightning-bg-all" />
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold mb-4 tracking-tight">
             Brands Around the World Trust Us

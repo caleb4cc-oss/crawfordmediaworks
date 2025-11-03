@@ -5,17 +5,16 @@ interface Particle {
   y: number;
   vx: number;
   vy: number;
-  baseX: number;
-  baseY: number;
+  baseVx: number;
+  baseVy: number;
 }
 
 export default function HeroInteractiveBg() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
-  const mouseRef = useRef({ x: 0, y: 0 });
+  const mouseRef = useRef({ x: -1000, y: -1000, isActive: false });
   const animationFrameRef = useRef<number>();
-  const lastFrameTimeRef = useRef<number>(0);
-  const particleCountRef = useRef<number>(75);
+  const particleCountRef = useRef<number>(80);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -34,27 +33,24 @@ export default function HeroInteractiveBg() {
       canvas.height = rect.height * dpr;
 
       ctx.scale(dpr, dpr);
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
 
-      initParticles();
+      initParticles(rect.width, rect.height);
     };
 
-    const initParticles = () => {
-      const rect = canvas.getBoundingClientRect();
+    const initParticles = (width: number, height: number) => {
       particlesRef.current = [];
 
       for (let i = 0; i < particleCountRef.current; i++) {
-        const x = Math.random() * rect.width;
-        const y = Math.random() * rect.height;
+        const baseVx = (Math.random() - 0.5) * 1.5;
+        const baseVy = (Math.random() - 0.5) * 1.5;
 
         particlesRef.current.push({
-          x,
-          y,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          baseX: x,
-          baseY: y,
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: baseVx,
+          vy: baseVy,
+          baseVx,
+          baseVy,
         });
       }
     };
@@ -64,13 +60,17 @@ export default function HeroInteractiveBg() {
       mouseRef.current = {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
+        isActive: true,
       };
+    };
+
+    const handleMouseLeave = () => {
+      mouseRef.current.isActive = false;
     };
 
     const handleVisibilityChange = () => {
       isVisible = !document.hidden;
       if (isVisible) {
-        lastFrameTimeRef.current = performance.now();
         animate();
       }
     };
@@ -78,71 +78,63 @@ export default function HeroInteractiveBg() {
     const animate = () => {
       if (!isVisible) return;
 
-      const now = performance.now();
-      const deltaTime = now - lastFrameTimeRef.current;
-
-      if (deltaTime > 16.7 && particleCountRef.current > 40) {
-        particleCountRef.current = Math.max(40, particleCountRef.current - 5);
-        initParticles();
-      }
-
-      lastFrameTimeRef.current = now;
-
       const rect = canvas.getBoundingClientRect();
-      const { x: mouseX, y: mouseY } = mouseRef.current;
+      const width = rect.width;
+      const height = rect.height;
+      const { x: mouseX, y: mouseY, isActive: mouseActive } = mouseRef.current;
 
       ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, rect.width, rect.height);
+      ctx.fillRect(0, 0, width, height);
 
-      const gradient = ctx.createRadialGradient(
-        mouseX,
-        mouseY,
-        0,
-        mouseX,
-        mouseY,
-        Math.max(rect.width, rect.height) * 0.6
-      );
-      gradient.addColorStop(0, 'rgba(50, 50, 50, 0.15)');
-      gradient.addColorStop(0.5, 'rgba(30, 30, 30, 0.05)');
-      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      if (mouseActive) {
+        const gradient = ctx.createRadialGradient(
+          mouseX,
+          mouseY,
+          0,
+          mouseX,
+          mouseY,
+          Math.max(width, height) * 0.5
+        );
+        gradient.addColorStop(0, 'rgba(70, 70, 70, 0.2)');
+        gradient.addColorStop(0.4, 'rgba(40, 40, 40, 0.1)');
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, rect.width, rect.height);
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+      }
 
       const particles = particlesRef.current;
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        const dx = mouseX - p.x;
-        const dy = mouseY - p.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const force = Math.min(150, 15000 / (dist * dist));
+        if (mouseActive) {
+          const dx = p.x - mouseX;
+          const dy = p.y - mouseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 150) {
-          p.vx -= (dx / dist) * force * 0.01;
-          p.vy -= (dy / dist) * force * 0.01;
+          if (dist < 200) {
+            const force = (200 - dist) / 200;
+            const angle = Math.atan2(dy, dx);
+            p.vx += Math.cos(angle) * force * 2;
+            p.vy += Math.sin(angle) * force * 2;
+          }
         }
 
-        const toBaseX = (p.baseX - p.x) * 0.01;
-        const toBaseY = (p.baseY - p.y) * 0.01;
-        p.vx += toBaseX;
-        p.vy += toBaseY;
+        p.vx += (p.baseVx - p.vx) * 0.02;
+        p.vy += (p.baseVy - p.vy) * 0.02;
 
-        p.vx *= 0.95;
-        p.vy *= 0.95;
+        p.vx *= 0.98;
+        p.vy *= 0.98;
 
         p.x += p.vx;
         p.y += p.vy;
 
-        if (p.x < 0) p.x = rect.width;
-        if (p.x > rect.width) p.x = 0;
-        if (p.y < 0) p.y = rect.height;
-        if (p.y > rect.height) p.y = 0;
+        if (p.x < -10) p.x = width + 10;
+        if (p.x > width + 10) p.x = -10;
+        if (p.y < -10) p.y = height + 10;
+        if (p.y > height + 10) p.y = -10;
       }
-
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-      ctx.lineWidth = 0.5;
 
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -153,9 +145,10 @@ export default function HeroInteractiveBg() {
           const dy = p2.y - p1.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 100) {
-            const alpha = (1 - distance / 100) * 0.08;
+          if (distance < 120) {
+            const alpha = (1 - distance / 120) * 0.15;
             ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
@@ -164,10 +157,10 @@ export default function HeroInteractiveBg() {
         }
       }
 
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
       for (const p of particles) {
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -176,19 +169,16 @@ export default function HeroInteractiveBg() {
 
     resize();
     window.addEventListener('resize', resize);
-    canvas.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    mouseRef.current = {
-      x: canvas.getBoundingClientRect().width / 2,
-      y: canvas.getBoundingClientRect().height / 2,
-    };
 
     animate();
 
     return () => {
       window.removeEventListener('resize', resize);
-      canvas.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -199,8 +189,7 @@ export default function HeroInteractiveBg() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
-      style={{ touchAction: 'none' }}
+      className="absolute inset-0 w-full h-full pointer-events-none"
     />
   );
 }

@@ -12,6 +12,16 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-visible">
+      <div className="wind-container">
+        <div className="wind-line wind-1"></div>
+        <div className="wind-line wind-2"></div>
+        <div className="wind-line wind-3"></div>
+        <div className="wind-line wind-4"></div>
+        <div className="wind-line wind-5"></div>
+        <div className="wind-line wind-6"></div>
+        <div className="wind-line wind-7"></div>
+        <div className="wind-line wind-8"></div>
+      </div>
       <Hero />
       <VideoShowcase onVideoClick={setSelectedVideo} />
       <Services />

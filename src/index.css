@@ -227,4 +227,93 @@ body {
     right: 35%;
     animation: float4 31s ease-in-out infinite reverse;
   }
+
+  .wind-container {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .wind-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    height: 1px;
+    width: 200px;
+    filter: blur(1px);
+    opacity: 0;
+  }
+
+  @keyframes windMove {
+    0% {
+      transform: translateX(100vw);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    90% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+  }
+
+  .wind-1 {
+    top: 15%;
+    animation: windMove 8s linear infinite;
+    animation-delay: 0s;
+  }
+
+  .wind-2 {
+    top: 25%;
+    animation: windMove 10s linear infinite;
+    animation-delay: 2s;
+    width: 150px;
+  }
+
+  .wind-3 {
+    top: 35%;
+    animation: windMove 12s linear infinite;
+    animation-delay: 4s;
+    width: 250px;
+  }
+
+  .wind-4 {
+    top: 45%;
+    animation: windMove 9s linear infinite;
+    animation-delay: 1s;
+    width: 180px;
+  }
+
+  .wind-5 {
+    top: 55%;
+    animation: windMove 11s linear infinite;
+    animation-delay: 3s;
+    width: 220px;
+  }
+
+  .wind-6 {
+    top: 65%;
+    animation: windMove 13s linear infinite;
+    animation-delay: 5s;
+    width: 170px;
+  }
+
+  .wind-7 {
+    top: 75%;
+    animation: windMove 10s linear infinite;
+    animation-delay: 2.5s;
+    width: 200px;
+  }
+
+  .wind-8 {
+    top: 85%;
+    animation: windMove 9.5s linear infinite;
+    animation-delay: 4.5s;
+    width: 190px;
+  }
 }

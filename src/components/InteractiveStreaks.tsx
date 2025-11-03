@@ -38,12 +38,12 @@ export default function InteractiveStreaks() {
         y: Math.random() * canvas.height,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        radius: 150 + Math.random() * 200,
-        opacity: 0.03 + Math.random() * 0.07,
+        radius: 300 + Math.random() * 400,
+        opacity: 0.08 + Math.random() * 0.12,
       };
     };
 
-    blobsRef.current = Array.from({ length: 8 }, createBlob);
+    blobsRef.current = Array.from({ length: 12 }, createBlob);
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
@@ -70,8 +70,8 @@ export default function InteractiveStreaks() {
           y: e.clientY,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
-          radius: 200 + Math.random() * 250,
-          opacity: 0.15 + Math.random() * 0.1,
+          radius: 350 + Math.random() * 400,
+          opacity: 0.25 + Math.random() * 0.15,
         };
       });
       blobsRef.current.push(...newBlobs);
@@ -112,7 +112,8 @@ export default function InteractiveStreaks() {
           blob.x, blob.y, blob.radius
         );
         gradient.addColorStop(0, `rgba(255, 255, 255, ${blob.opacity})`);
-        gradient.addColorStop(0.5, `rgba(255, 255, 255, ${blob.opacity * 0.5})`);
+        gradient.addColorStop(0.4, `rgba(255, 255, 255, ${blob.opacity * 0.6})`);
+        gradient.addColorStop(0.7, `rgba(255, 255, 255, ${blob.opacity * 0.3})`);
         gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
         ctx.fillStyle = gradient;

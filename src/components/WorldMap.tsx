@@ -30,10 +30,9 @@ export default function WorldMap() {
         </div>
 
         <div className="relative">
-          <div className="bg-gradient-to-br from-gray-900/50 to-black border border-gray-800 rounded-2xl p-8 backdrop-blur">
             <div
               ref={containerRef}
-              className="relative overflow-hidden rounded-lg bg-black"
+              className="relative overflow-hidden rounded-lg"
               style={{ height: '600px' }}
             >
               <div className="absolute inset-0">
@@ -122,8 +121,6 @@ export default function WorldMap() {
                 ))}
               </div>
             </div>
-
-          </div>
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
 interface ClientLocation {
   name: string;
@@ -15,33 +15,6 @@ const clientLocations: ClientLocation[] = [
 
 export default function WorldMap() {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const [selectedPin, setSelectedPin] = useState(0);
-  const [showTool, setShowTool] = useState(true);
-  const [readout, setReadout] = useState('Tap anywhere on the map to position the selected pin.');
-  const [markers, setMarkers] = useState(clientLocations);
-
-  const placeAt = (evt: React.MouseEvent | React.TouchEvent) => {
-    if (!wrapRef.current) return;
-
-    const rect = wrapRef.current.getBoundingClientRect();
-    const clientX = 'touches' in evt ? evt.touches[0].clientX : evt.clientX;
-    const clientY = 'touches' in evt ? evt.touches[0].clientY : evt.clientY;
-    const xPct = ((clientX - rect.left) / rect.width) * 100;
-    const yPct = ((clientY - rect.top) / rect.height) * 100;
-
-    const updated = [...markers];
-    updated[selectedPin] = {
-      ...updated[selectedPin],
-      x: parseFloat(xPct.toFixed(1)),
-      y: parseFloat(yPct.toFixed(1))
-    };
-    setMarkers(updated);
-
-    const pin = updated[selectedPin];
-    const code = `left: ${xPct.toFixed(1)}%; top: ${yPct.toFixed(1)}%;`;
-    setReadout(`${pin.name} → ${code}`);
-    console.log(`[PinTool] ${pin.name} -> ${code}`);
-  };
 
   return (
     <section id="clients" className="py-16 sm:py-24 px-6 bg-black relative overflow-hidden">
@@ -61,8 +34,6 @@ export default function WorldMap() {
               ref={wrapRef}
               className="relative rounded-lg bg-black overflow-hidden"
               style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}
-              onClick={placeAt}
-              onTouchStart={placeAt}
             >
               <img
                 src="/Assets/World_map_blank_without_borders.svg.png"
@@ -79,7 +50,7 @@ export default function WorldMap() {
                 }}
               />
 
-              {markers.map((location, index) => (
+              {clientLocations.map((location, index) => (
                 <div
                   key={index}
                   className="absolute cursor-pointer rounded-full bg-white shadow-lg"
@@ -99,42 +70,6 @@ export default function WorldMap() {
                 </div>
               ))}
 
-              {showTool && (
-                <div
-                  className="absolute right-2 top-2 z-10 flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-white"
-                  style={{
-                    background: 'rgba(0,0,0,.7)',
-                    backdropFilter: 'blur(6px)'
-                  }}
-                >
-                  <span>Place pin:</span>
-                  <select
-                    value={selectedPin}
-                    onChange={(e) => setSelectedPin(parseInt(e.target.value))}
-                    className="rounded bg-white/10 px-2 py-1 text-xs text-white border border-white/20"
-                  >
-                    {markers.map((m, i) => (
-                      <option key={i} value={i} className="bg-gray-900">
-                        {m.name}
-                      </option>
-                    ))}
-                  </select>
-                  <button
-                    onClick={() => setShowTool(false)}
-                    className="rounded bg-white/10 px-3 py-1 text-xs hover:bg-white/20 border border-white/20"
-                    type="button"
-                  >
-                    Done
-                  </button>
-                </div>
-              )}
-
-              <div
-                className="absolute left-2 bottom-2 z-10 rounded-lg px-3 py-2 text-xs text-white"
-                style={{ background: 'rgba(0,0,0,.6)' }}
-              >
-                {readout}
-              </div>
             </div>
           </div>
         </div>

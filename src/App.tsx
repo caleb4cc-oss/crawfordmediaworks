@@ -21,6 +21,23 @@ function App() {
         <div className="wind-line wind-6"></div>
         <div className="wind-line wind-7"></div>
         <div className="wind-line wind-8"></div>
+        <div className="wind-line wind-9"></div>
+        <div className="wind-line wind-10"></div>
+        <div className="wind-line wind-11"></div>
+        <div className="wind-line wind-12"></div>
+        <div className="wind-line wind-13"></div>
+        <div className="wind-line wind-14"></div>
+        <div className="wind-line wind-15"></div>
+        <div className="wind-line wind-16"></div>
+        <div className="wind-line wind-17"></div>
+        <div className="wind-line wind-18"></div>
+        <div className="wind-line wind-19"></div>
+        <div className="wind-line wind-20"></div>
+        <div className="wind-line wind-21"></div>
+        <div className="wind-line wind-22"></div>
+        <div className="wind-line wind-23"></div>
+        <div className="wind-line wind-24"></div>
+        <div className="wind-line wind-25"></div>
       </div>
       <Hero />
       <VideoShowcase onVideoClick={setSelectedVideo} />

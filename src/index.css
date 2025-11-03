@@ -243,6 +243,16 @@ body {
     width: 200px;
     filter: blur(1px);
     opacity: 0;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .wind-line:hover {
+    height: 2px;
+    filter: blur(0px);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 1), transparent);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
   }
 
   @keyframes windMove {
@@ -315,5 +325,124 @@ body {
     animation: windMove 9.5s linear infinite;
     animation-delay: 4.5s;
     width: 190px;
+  }
+
+  .wind-9 {
+    top: 10%;
+    animation: windMove 11.5s linear infinite;
+    animation-delay: 6s;
+    width: 210px;
+  }
+
+  .wind-10 {
+    top: 20%;
+    animation: windMove 8.5s linear infinite;
+    animation-delay: 1.5s;
+    width: 160px;
+  }
+
+  .wind-11 {
+    top: 30%;
+    animation: windMove 13.5s linear infinite;
+    animation-delay: 3.5s;
+    width: 240px;
+  }
+
+  .wind-12 {
+    top: 40%;
+    animation: windMove 10.5s linear infinite;
+    animation-delay: 5.5s;
+    width: 195px;
+  }
+
+  .wind-13 {
+    top: 50%;
+    animation: windMove 9s linear infinite;
+    animation-delay: 0.5s;
+    width: 175px;
+  }
+
+  .wind-14 {
+    top: 60%;
+    animation: windMove 12.5s linear infinite;
+    animation-delay: 2.8s;
+    width: 230px;
+  }
+
+  .wind-15 {
+    top: 70%;
+    animation: windMove 11s linear infinite;
+    animation-delay: 4.8s;
+    width: 185px;
+  }
+
+  .wind-16 {
+    top: 80%;
+    animation: windMove 10.2s linear infinite;
+    animation-delay: 6.5s;
+    width: 205px;
+  }
+
+  .wind-17 {
+    top: 90%;
+    animation: windMove 9.8s linear infinite;
+    animation-delay: 1.8s;
+    width: 165px;
+  }
+
+  .wind-18 {
+    top: 5%;
+    animation: windMove 14s linear infinite;
+    animation-delay: 3.2s;
+    width: 220px;
+  }
+
+  .wind-19 {
+    top: 12%;
+    animation: windMove 8.8s linear infinite;
+    animation-delay: 5.2s;
+    width: 155px;
+  }
+
+  .wind-20 {
+    top: 22%;
+    animation: windMove 11.8s linear infinite;
+    animation-delay: 0.8s;
+    width: 200px;
+  }
+
+  .wind-21 {
+    top: 32%;
+    animation: windMove 10.8s linear infinite;
+    animation-delay: 2.2s;
+    width: 215px;
+  }
+
+  .wind-22 {
+    top: 42%;
+    animation: windMove 13.2s linear infinite;
+    animation-delay: 4.2s;
+    width: 190px;
+  }
+
+  .wind-23 {
+    top: 52%;
+    animation: windMove 9.2s linear infinite;
+    animation-delay: 6.2s;
+    width: 180px;
+  }
+
+  .wind-24 {
+    top: 62%;
+    animation: windMove 12.2s linear infinite;
+    animation-delay: 1.2s;
+    width: 235px;
+  }
+
+  .wind-25 {
+    top: 72%;
+    animation: windMove 11.2s linear infinite;
+    animation-delay: 3.8s;
+    width: 170px;
   }
 }

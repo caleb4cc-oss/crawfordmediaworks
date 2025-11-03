@@ -28,6 +28,8 @@ export default function InteractiveStreaks() {
   const blobsRef = useRef<GradientBlob[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number>();
+  const imageRef = useRef<HTMLImageElement | null>(null);
+  const offsetRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -43,6 +45,12 @@ export default function InteractiveStreaks() {
 
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
+
+    const img = new Image();
+    img.src = '/Assets/photo-1619252584172-a83a949b6efd.jpeg';
+    img.onload = () => {
+      imageRef.current = img;
+    };
 
     const createBlob = (): GradientBlob => {
       const angle = Math.random() * Math.PI * 2;
@@ -135,6 +143,24 @@ export default function InteractiveStreaks() {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (imageRef.current) {
+        offsetRef.current.x += 0.15;
+        offsetRef.current.y += 0.08;
+
+        const imgWidth = canvas.width * 1.5;
+        const imgHeight = (imageRef.current.height / imageRef.current.width) * imgWidth;
+
+        const x = (offsetRef.current.x % imgWidth) - imgWidth;
+        const y = (offsetRef.current.y % imgHeight) - imgHeight;
+
+        ctx.globalAlpha = 0.6;
+        ctx.drawImage(imageRef.current, x, y, imgWidth, imgHeight);
+        ctx.drawImage(imageRef.current, x + imgWidth, y, imgWidth, imgHeight);
+        ctx.drawImage(imageRef.current, x, y + imgHeight, imgWidth, imgHeight);
+        ctx.drawImage(imageRef.current, x + imgWidth, y + imgHeight, imgWidth, imgHeight);
+        ctx.globalAlpha = 1.0;
+      }
 
       blobsRef.current.forEach((blob, index) => {
         if (blob.dispersing) {
@@ -242,7 +268,7 @@ export default function InteractiveStreaks() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none"
-      style={{ mixBlendMode: 'screen' }}
+      style={{ mixBlendMode: 'normal' }}
     />
   );
 }

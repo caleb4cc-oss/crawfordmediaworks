@@ -5,7 +5,7 @@ const videos = [
   { id: 1, title: 'E-commerce Ad', thumbnail: 'https://images.pexels.com/photos/3584927/pexels-photo-3584927.jpeg?auto=compress&cs=tinysrgb&w=800', videoUrl: '' },
   { id: 2, title: 'UGC Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.18.23.png', videoUrl: 'https://www.dropbox.com/scl/fi/ps66dza2myg2q42j0ao4f/UGC-Ad.mp4?rlkey=uhof7947voxb4bpz1vzu52hr5&st=0q4134ys&dl=0' },
   { id: 3, title: 'Brand Story', thumbnail: 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=800', videoUrl: '' },
-  { id: 4, title: 'Social Campaign', thumbnail: 'https://images.pexels.com/photos/3906810/pexels-photo-3906810.jpeg?auto=compress&cs=tinysrgb&w=800', videoUrl: '' },
+  { id: 4, title: 'Street Interview Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.19.21.png', videoUrl: 'https://www.dropbox.com/scl/fi/kv1c3ho0dxg534z5ebm5j/Chicken-Run-Vox-Pop.mp4?rlkey=d2n639spa278qi2bos1g8bonc&st=a5hk0ag8&dl=0' },
   { id: 5, title: 'Testimonial', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800', videoUrl: '' },
   { id: 6, title: 'Product Demo', thumbnail: 'https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=800', videoUrl: '' },
 ];

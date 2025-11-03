@@ -20,6 +20,7 @@ interface GradientBlob {
   opacity: number;
   particles: Particle[];
   dispersing: boolean;
+  disperseProgress: number;
 }
 
 export default function InteractiveStreaks() {
@@ -55,6 +56,7 @@ export default function InteractiveStreaks() {
         opacity: 0.15 + Math.random() * 0.25,
         particles: [],
         dispersing: false,
+        disperseProgress: 0,
       };
     };
 
@@ -118,6 +120,7 @@ export default function InteractiveStreaks() {
           opacity: 0.35 + Math.random() * 0.25,
           particles: [],
           dispersing: false,
+          disperseProgress: 0,
         };
       });
       blobsRef.current.push(...newBlobs);
@@ -135,13 +138,39 @@ export default function InteractiveStreaks() {
 
       blobsRef.current.forEach((blob, index) => {
         if (blob.dispersing) {
+          blob.disperseProgress += 0.005;
+
+          if (blob.disperseProgress < 1) {
+            const currentRadius = blob.radius * (1 - blob.disperseProgress);
+            const currentOpacity = blob.opacity * (1 - blob.disperseProgress);
+
+            const gradient = ctx.createRadialGradient(
+              blob.x, blob.y, 0,
+              blob.x, blob.y, currentRadius
+            );
+            gradient.addColorStop(0, `rgba(255, 255, 255, ${currentOpacity})`);
+            gradient.addColorStop(0.3, `rgba(255, 255, 255, ${currentOpacity * 0.7})`);
+            gradient.addColorStop(0.6, `rgba(255, 255, 255, ${currentOpacity * 0.3})`);
+            gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(blob.x, blob.y, currentRadius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
           blob.particles = blob.particles.filter(particle => {
-            particle.x += particle.vx;
-            particle.y += particle.vy;
-            particle.life++;
+            const particleStartDelay = blob.disperseProgress > 0.3 ? 1 : 0;
+
+            if (particleStartDelay) {
+              particle.x += particle.vx;
+              particle.y += particle.vy;
+              particle.life++;
+            }
 
             const lifeRatio = particle.life / particle.maxLife;
-            const currentOpacity = particle.opacity * (1 - lifeRatio);
+            const visibilityFactor = Math.min(blob.disperseProgress * 3, 1);
+            const currentOpacity = particle.opacity * (1 - lifeRatio) * visibilityFactor;
 
             if (currentOpacity > 0.01) {
               ctx.fillStyle = `rgba(255, 255, 255, ${currentOpacity})`;
@@ -153,7 +182,7 @@ export default function InteractiveStreaks() {
             return false;
           });
 
-          if (blob.particles.length === 0) {
+          if (blob.disperseProgress >= 1 && blob.particles.length === 0) {
             blobsRef.current.splice(index, 1);
             const newBlob = createBlob();
             blobsRef.current.push(newBlob);

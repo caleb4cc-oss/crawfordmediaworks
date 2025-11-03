@@ -8,9 +8,9 @@ interface ClientLocation {
 }
 
 const clientLocations: ClientLocation[] = [
-  { name: 'United States', country: 'United States', x: 27, y: 33 },
-  { name: 'United Kingdom', country: 'United Kingdom', x: 45, y: 27 },
-  { name: 'Dubai', country: 'United Arab Emirates', x: 58, y: 33.5 }
+  { name: 'United States', country: 'United States', x: 18.7, y: 27.6 },
+  { name: 'United Kingdom', country: 'United Kingdom', x: 46.7, y: 18.1 },
+  { name: 'Dubai', country: 'United Arab Emirates', x: 62.4, y: 34.3 }
 ];
 
 export default function WorldMap() {

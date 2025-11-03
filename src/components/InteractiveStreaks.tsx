@@ -1,18 +1,17 @@
 import { useEffect, useRef } from 'react';
 
-interface Streak {
+interface GradientBlob {
   x: number;
   y: number;
   vx: number;
   vy: number;
-  length: number;
+  radius: number;
   opacity: number;
-  thickness: number;
 }
 
 export default function InteractiveStreaks() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const streaksRef = useRef<Streak[]>([]);
+  const blobsRef = useRef<GradientBlob[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number>();
 
@@ -31,105 +30,95 @@ export default function InteractiveStreaks() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    const createStreak = (): Streak => {
+    const createBlob = (): GradientBlob => {
       const angle = Math.random() * Math.PI * 2;
-      const speed = 0.15 + Math.random() * 0.35;
+      const speed = 0.2 + Math.random() * 0.4;
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        length: 40 + Math.random() * 80,
-        opacity: 0.05 + Math.random() * 0.15,
-        thickness: 1 + Math.random() * 2,
+        radius: 150 + Math.random() * 200,
+        opacity: 0.03 + Math.random() * 0.07,
       };
     };
 
-    streaksRef.current = Array.from({ length: 25 }, createStreak);
+    blobsRef.current = Array.from({ length: 8 }, createBlob);
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
 
-      streaksRef.current.forEach(streak => {
-        const dx = e.clientX - streak.x;
-        const dy = e.clientY - streak.y;
+      blobsRef.current.forEach(blob => {
+        const dx = e.clientX - blob.x;
+        const dy = e.clientY - blob.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < 200) {
-          const force = (200 - distance) / 200;
-          streak.vx += (dx / distance) * force * 0.25;
-          streak.vy += (dy / distance) * force * 0.25;
+        if (distance < 300) {
+          const force = (300 - distance) / 300;
+          blob.vx += (dx / distance) * force * 0.3;
+          blob.vy += (dy / distance) * force * 0.3;
         }
       });
     };
 
     const handleClick = (e: MouseEvent) => {
-      const newStreaks = Array.from({ length: 5 }, () => {
+      const newBlobs = Array.from({ length: 2 }, () => {
         const angle = Math.random() * Math.PI * 2;
-        const speed = 1 + Math.random() * 1.5;
+        const speed = 0.8 + Math.random() * 1.2;
         return {
           x: e.clientX,
           y: e.clientY,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
-          length: 60 + Math.random() * 100,
-          opacity: 0.2 + Math.random() * 0.2,
-          thickness: 2 + Math.random() * 3,
+          radius: 200 + Math.random() * 250,
+          opacity: 0.15 + Math.random() * 0.1,
         };
       });
-      streaksRef.current.push(...newStreaks);
+      blobsRef.current.push(...newBlobs);
 
       setTimeout(() => {
-        streaksRef.current = streaksRef.current.slice(5);
-      }, 3000);
+        blobsRef.current = blobsRef.current.slice(2);
+      }, 4000);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('click', handleClick);
 
     const animate = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      streaksRef.current.forEach(streak => {
-        streak.x += streak.vx;
-        streak.y += streak.vy;
+      blobsRef.current.forEach(blob => {
+        blob.x += blob.vx;
+        blob.y += blob.vy;
 
-        streak.vx *= 0.99;
-        streak.vy *= 0.99;
+        blob.vx *= 0.98;
+        blob.vy *= 0.98;
 
-        if (streak.x < 0 || streak.x > canvas.width) {
-          streak.vx *= -1;
-          streak.x = Math.max(0, Math.min(canvas.width, streak.x));
-        }
-        if (streak.y < 0 || streak.y > canvas.height) {
-          streak.vy *= -1;
-          streak.y = Math.max(0, Math.min(canvas.height, streak.y));
-        }
+        if (blob.x < -blob.radius) blob.x = canvas.width + blob.radius;
+        if (blob.x > canvas.width + blob.radius) blob.x = -blob.radius;
+        if (blob.y < -blob.radius) blob.y = canvas.height + blob.radius;
+        if (blob.y > canvas.height + blob.radius) blob.y = -blob.radius;
 
-        const speedMagnitude = Math.sqrt(streak.vx * streak.vx + streak.vy * streak.vy);
+        const speedMagnitude = Math.sqrt(blob.vx * blob.vx + blob.vy * blob.vy);
         if (speedMagnitude < 0.1) {
           const angle = Math.random() * Math.PI * 2;
-          const speed = 0.15 + Math.random() * 0.25;
-          streak.vx = Math.cos(angle) * speed;
-          streak.vy = Math.sin(angle) * speed;
+          const speed = 0.2 + Math.random() * 0.3;
+          blob.vx = Math.cos(angle) * speed;
+          blob.vy = Math.sin(angle) * speed;
         }
 
-        const endX = streak.x - (streak.vx / speedMagnitude) * streak.length;
-        const endY = streak.y - (streak.vy / speedMagnitude) * streak.length;
-
-        const gradient = ctx.createLinearGradient(streak.x, streak.y, endX, endY);
-        gradient.addColorStop(0, `rgba(255, 255, 255, ${streak.opacity})`);
+        const gradient = ctx.createRadialGradient(
+          blob.x, blob.y, 0,
+          blob.x, blob.y, blob.radius
+        );
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${blob.opacity})`);
+        gradient.addColorStop(0.5, `rgba(255, 255, 255, ${blob.opacity * 0.5})`);
         gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = streak.thickness;
-        ctx.lineCap = 'round';
-
+        ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.moveTo(streak.x, streak.y);
-        ctx.lineTo(endX, endY);
-        ctx.stroke();
+        ctx.arc(blob.x, blob.y, blob.radius, 0, Math.PI * 2);
+        ctx.fill();
       });
 
       animationRef.current = requestAnimationFrame(animate);

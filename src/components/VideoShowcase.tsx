@@ -6,7 +6,6 @@ const videos = [
   { id: 3, title: 'Podcast Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.20.17.png', videoUrl: 'https://www.dropbox.com/scl/fi/ldqezvdtqceluiwr50aib/Podcast-Ad.mp4?rlkey=8kojuvt6huz2oyip85w0bs13q&st=nj3e99e2&dl=0', zoom: true },
   { id: 4, title: 'Street Interview Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.19.21.png', videoUrl: 'https://www.dropbox.com/scl/fi/kv1c3ho0dxg534z5ebm5j/Chicken-Run-Vox-Pop.mp4?rlkey=d2n639spa278qi2bos1g8bonc&st=a5hk0ag8&dl=0' },
   { id: 5, title: 'Founder Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.21.13.png', videoUrl: 'https://www.dropbox.com/scl/fi/o53ws008f8mb17wjjndmo/Founder-Ad.mp4?rlkey=1aa9ffy7if8pjkg2e66oe2kb9&st=9ezocjol&dl=0', zoom: true },
-  { id: 6, title: 'Product Demo', thumbnail: 'https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=800', videoUrl: '' },
 ];
 
 interface VideoShowcaseProps {

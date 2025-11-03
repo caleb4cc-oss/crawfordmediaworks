@@ -11,7 +11,7 @@ function App() {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-visible">
+    <div className="min-h-screen bg-black text-white overflow-visible relative">
       <div className="wind-container">
         <div className="wind-line wind-1"></div>
         <div className="wind-line wind-2"></div>

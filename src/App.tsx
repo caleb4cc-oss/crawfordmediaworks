@@ -12,7 +12,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-visible relative">
-      <div className="motion-background"></div>
       <Hero />
       <VideoShowcase onVideoClick={setSelectedVideo} />
       <Services />

@@ -2,16 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy"
-  content="
-    default-src 'self' https: data: blob:;
-    script-src 'self' https: 'unsafe-inline' 'unsafe-eval';
-    style-src 'self' https: 'unsafe-inline';
-    img-src 'self' https: data:;
-    frame-src https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com;
-    child-src https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com;
-    connect-src 'self' https:;
-  ">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: blob:; script-src 'self' https://unpkg.com https://*.splinetool.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https:; img-src * data: blob:; frame-src https://prod.spline.design https://my.spline.design; connect-src https://*.spline.design https://*.splinetool.com https://unpkg.com;">
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Video Editing Agency Website</title>

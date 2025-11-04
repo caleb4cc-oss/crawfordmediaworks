@@ -5,7 +5,7 @@ const videos = [
   { id: 2, title: 'UGC Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 22.40.07.png', videoUrl: 'https://www.dropbox.com/scl/fi/ps66dza2myg2q42j0ao4f/UGC-Ad.mp4?rlkey=uhof7947voxb4bpz1vzu52hr5&st=dderc1z7&dl=0' },
   { id: 3, title: 'Podcast Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.20.17.png', videoUrl: 'https://www.dropbox.com/scl/fi/ldqezvdtqceluiwr50aib/Podcast-Ad.mp4?rlkey=8kojuvt6huz2oyip85w0bs13q&st=nj3e99e2&dl=0' },
   { id: 4, title: 'Street Interview Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.19.21.png', videoUrl: 'https://www.dropbox.com/scl/fi/kv1c3ho0dxg534z5ebm5j/Chicken-Run-Vox-Pop.mp4?rlkey=d2n639spa278qi2bos1g8bonc&st=a5hk0ag8&dl=0' },
-  { id: 5, title: 'Founder Ad', thumbnail: '', videoUrl: '', isEmbed: true, embedUrl: 'https://www.youtube.com/embed/Pf71T_feoEo' },
+  { id: 5, title: 'Founder Ad', thumbnail: '', videoUrl: '', isEmbed: true, embedUrl: 'https://www.youtube-nocookie.com/embed/Pf71T_feoEo?rel=0&modestbranding=1&playsinline=1' },
 ];
 
 interface VideoShowcaseProps {
@@ -58,14 +58,15 @@ export default function VideoShowcase({ onVideoClick }: VideoShowcaseProps) {
           >
             {video.isEmbed ? (
               <div className="w-full h-full">
-                <iframe
-                  src={video.embedUrl}
-                  title={video.title}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  style={{ border: 'none' }}
-                />
+                <div style={{ position: 'relative', paddingTop: '177.78%', height: 0, overflow: 'hidden', borderRadius: '16px' }}>
+                  <iframe
+                    src={video.embedUrl}
+                    title="YouTube video player"
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black to-transparent rounded-b-2xl pointer-events-none">
                   <h3 className="text-lg sm:text-xl md:text-2xl font-semibold whitespace-nowrap">{video.title}</h3>
                 </div>

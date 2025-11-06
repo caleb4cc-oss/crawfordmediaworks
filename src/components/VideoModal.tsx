@@ -1,5 +1,5 @@
 import { X } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface VideoModalProps {
   videoUrl: string | null;
@@ -8,17 +8,32 @@ interface VideoModalProps {
 }
 
 export default function VideoModal({ videoUrl, onClose, isEmbed }: VideoModalProps) {
+  const [showFallback, setShowFallback] = useState(false);
+
   useEffect(() => {
     if (videoUrl) {
       document.body.style.overflow = 'hidden';
+
+      if (isEmbed) {
+        const timer = setTimeout(() => {
+          setShowFallback(true);
+        }, 2000);
+
+        return () => {
+          clearTimeout(timer);
+          document.body.style.overflow = 'unset';
+          setShowFallback(false);
+        };
+      }
     } else {
       document.body.style.overflow = 'unset';
     }
 
     return () => {
       document.body.style.overflow = 'unset';
+      setShowFallback(false);
     };
-  }, [videoUrl]);
+  }, [videoUrl, isEmbed]);
 
   if (!videoUrl) return null;
 
@@ -35,16 +50,39 @@ export default function VideoModal({ videoUrl, onClose, isEmbed }: VideoModalPro
       </button>
 
       <div
-        className="relative bg-black rounded-2xl overflow-hidden"
-        style={{ maxWidth: '1200px', width: '90vw', aspectRatio: isEmbed ? '9 / 16' : '16 / 9' }}
+        className="relative bg-black overflow-hidden"
+        style={{
+          width: '90vw',
+          maxWidth: isEmbed ? '420px' : '1200px',
+          aspectRatio: isEmbed ? '9 / 16' : '16 / 9',
+          borderRadius: '16px'
+        }}
         onClick={(e) => e.stopPropagation()}
       >
         {isEmbed ? (
-          <div
-            className="relative z-[2]"
-            style={{ width: '100%', height: '100%' }}
-            dangerouslySetInnerHTML={{ __html: videoUrl }}
-          />
+          <div className="relative" style={{ width: '100%', height: '100%', background: '#000' }}>
+            <iframe
+              src="https://www.youtube.com/embed/2b3BUo3xZP8?autoplay=1&mute=1&playsinline=1&origin=https://bolt.new"
+              title="Founder Ad"
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              style={{ width: '100%', height: '100%', display: 'block' }}
+              onLoad={() => setShowFallback(false)}
+            />
+            {showFallback && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-90 z-10">
+                <a
+                  href="https://www.youtube.com/embed/2b3BUo3xZP8?autoplay=1&mute=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+                >
+                  Open Video
+                </a>
+              </div>
+            )}
+          </div>
         ) : (
           <img
             src={videoUrl}

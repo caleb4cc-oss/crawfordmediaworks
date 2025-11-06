@@ -57,7 +57,7 @@ export default function VideoShowcase({ onVideoClick }: VideoShowcaseProps) {
             style={{ width: '250px', height: '444px', maxWidth: '80vw', maxHeight: '70vh' }}
             onClick={() => {
               if (video.videoUrl) {
-                window.open(video.videoUrl, '_blank');
+                window.open(video.videoUrl, '_self');
               } else {
                 onVideoClick(video.thumbnail);
               }

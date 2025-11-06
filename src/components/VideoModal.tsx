@@ -24,22 +24,27 @@ export default function VideoModal({ videoUrl, onClose, isEmbed }: VideoModalPro
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-6 animate-fadeIn"
+      className="fixed inset-0 bg-black bg-opacity-95 z-40 flex items-center justify-center p-6 animate-fadeIn"
       onClick={onClose}
     >
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-200 z-10"
+        className="absolute top-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-200 z-50"
       >
         <X size={24} className="text-black" />
       </button>
 
       <div
-        className="relative max-w-5xl w-full aspect-video bg-black rounded-2xl overflow-hidden"
+        className="relative bg-black rounded-2xl overflow-hidden"
+        style={{ maxWidth: '1200px', width: '90vw', aspectRatio: '16 / 9' }}
         onClick={(e) => e.stopPropagation()}
       >
         {isEmbed ? (
-          <div dangerouslySetInnerHTML={{ __html: videoUrl }} className="w-full h-full" />
+          <div
+            className="relative z-[2]"
+            style={{ width: '100%', height: '100%' }}
+            dangerouslySetInnerHTML={{ __html: videoUrl }}
+          />
         ) : (
           <img
             src={videoUrl}

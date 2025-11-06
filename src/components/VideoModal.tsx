@@ -36,7 +36,7 @@ export default function VideoModal({ videoUrl, onClose, isEmbed }: VideoModalPro
 
       <div
         className="relative bg-black rounded-2xl overflow-hidden"
-        style={{ maxWidth: '1200px', width: '90vw', aspectRatio: '16 / 9' }}
+        style={{ maxWidth: '1200px', width: '90vw', aspectRatio: isEmbed ? '9 / 16' : '16 / 9' }}
         onClick={(e) => e.stopPropagation()}
       >
         {isEmbed ? (

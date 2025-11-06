@@ -5,11 +5,11 @@ const videos = [
   { id: 2, title: 'UGC Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 22.40.07.png', videoUrl: 'https://www.dropbox.com/scl/fi/ps66dza2myg2q42j0ao4f/UGC-Ad.mp4?rlkey=uhof7947voxb4bpz1vzu52hr5&st=dderc1z7&dl=0' },
   { id: 3, title: 'Podcast Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.20.17.png', videoUrl: 'https://www.dropbox.com/scl/fi/ldqezvdtqceluiwr50aib/Podcast-Ad.mp4?rlkey=8kojuvt6huz2oyip85w0bs13q&st=nj3e99e2&dl=0' },
   { id: 4, title: 'Street Interview Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.19.21.png', videoUrl: 'https://www.dropbox.com/scl/fi/kv1c3ho0dxg534z5ebm5j/Chicken-Run-Vox-Pop.mp4?rlkey=d2n639spa278qi2bos1g8bonc&st=a5hk0ag8&dl=0' },
-  { id: 5, title: 'Founder Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.21.13.png', videoUrl: 'https://vimeo.com/1133571776?fl=ip&fe=ec' },
+  { id: 5, title: 'Founder Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.21.13.png', embedCode: '<iframe src="https://player.vimeo.com/video/1133571776?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="2160" height="3840" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Hunter &amp; Gather 13.10.25 (collagen) final"></iframe>' },
 ];
 
 interface VideoShowcaseProps {
-  onVideoClick: (videoUrl: string) => void;
+  onVideoClick: (content: string, isEmbed?: boolean) => void;
 }
 
 export default function VideoShowcase({ onVideoClick }: VideoShowcaseProps) {
@@ -56,7 +56,9 @@ export default function VideoShowcase({ onVideoClick }: VideoShowcaseProps) {
             className="flex-shrink-0 relative group cursor-pointer overflow-hidden rounded-2xl"
             style={{ width: '250px', height: '444px', maxWidth: '80vw', maxHeight: '70vh' }}
             onClick={() => {
-              if (video.videoUrl) {
+              if (video.embedCode) {
+                onVideoClick(video.embedCode, true);
+              } else if (video.videoUrl) {
                 window.open(video.videoUrl, '_self');
               } else {
                 onVideoClick(video.thumbnail);

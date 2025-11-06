@@ -4,9 +4,10 @@ import { useEffect } from 'react';
 interface VideoModalProps {
   videoUrl: string | null;
   onClose: () => void;
+  isEmbed?: boolean;
 }
 
-export default function VideoModal({ videoUrl, onClose }: VideoModalProps) {
+export default function VideoModal({ videoUrl, onClose, isEmbed }: VideoModalProps) {
   useEffect(() => {
     if (videoUrl) {
       document.body.style.overflow = 'hidden';
@@ -37,11 +38,15 @@ export default function VideoModal({ videoUrl, onClose }: VideoModalProps) {
         className="relative max-w-5xl w-full aspect-video bg-black rounded-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <img
-          src={videoUrl}
-          alt="Video preview"
-          className="w-full h-full object-cover"
-        />
+        {isEmbed ? (
+          <div dangerouslySetInnerHTML={{ __html: videoUrl }} className="w-full h-full" />
+        ) : (
+          <img
+            src={videoUrl}
+            alt="Video preview"
+            className="w-full h-full object-cover"
+          />
+        )}
       </div>
     </div>
   );

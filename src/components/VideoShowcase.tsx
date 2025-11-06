@@ -5,7 +5,7 @@ const videos = [
   { id: 2, title: 'UGC Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 22.40.07.png', videoUrl: 'https://www.dropbox.com/scl/fi/ps66dza2myg2q42j0ao4f/UGC-Ad.mp4?rlkey=uhof7947voxb4bpz1vzu52hr5&st=dderc1z7&dl=0' },
   { id: 3, title: 'Podcast Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.20.17.png', videoUrl: 'https://www.dropbox.com/scl/fi/ldqezvdtqceluiwr50aib/Podcast-Ad.mp4?rlkey=8kojuvt6huz2oyip85w0bs13q&st=nj3e99e2&dl=0' },
   { id: 4, title: 'Street Interview Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.19.21.png', videoUrl: 'https://www.dropbox.com/scl/fi/kv1c3ho0dxg534z5ebm5j/Chicken-Run-Vox-Pop.mp4?rlkey=d2n639spa278qi2bos1g8bonc&st=a5hk0ag8&dl=0' },
-  { id: 5, title: 'Founder Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.21.13.png', embedCode: '<iframe src="https://player.vimeo.com/video/1133571776?badge=0&autopause=0&player_id=0&app_id=58479" title="Hunter & Gather 13.10.25 (collagen) final" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen style="width:100%;height:100%;display:block;"></iframe>' },
+  { id: 5, title: 'Founder Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.21.13.png', embedCode: '<iframe src="https://www.youtube.com/embed/2b3BUo3xZP8" title="Founder Ad" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen style="width:100%;height:100%;display:block;"></iframe>' },
 ];
 
 interface VideoShowcaseProps {

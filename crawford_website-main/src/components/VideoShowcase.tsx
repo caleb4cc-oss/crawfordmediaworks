@@ -1,0 +1,94 @@
+import { useEffect, useRef } from 'react';
+import { Play } from 'lucide-react';
+
+const videos = [
+  { id: 2, title: 'UGC Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 22.40.07.png', videoUrl: 'https://www.dropbox.com/scl/fi/ps66dza2myg2q42j0ao4f/UGC-Ad.mp4?rlkey=uhof7947voxb4bpz1vzu52hr5&st=dderc1z7&raw=1', type: 'video' as const },
+  { id: 3, title: 'Podcast Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.20.17.png', videoUrl: 'https://www.dropbox.com/scl/fi/ldqezvdtqceluiwr50aib/Podcast-Ad.mp4?rlkey=8kojuvt6huz2oyip85w0bs13q&st=nj3e99e2&raw=1', type: 'video' as const },
+  { id: 4, title: 'Street Interview Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.19.21.png', videoUrl: 'https://drive.google.com/uc?export=download&id=15Z6hyE__SRB0xHiWjMZEQfuYZP3w-E5V', type: 'iframe' as const },
+  { id: 5, title: 'Founder Ad', thumbnail: '/Assets/Screenshot 2025-11-03 at 18.21.13.png', videoUrl: 'https://share.zight.com/E0uQdeqk', type: 'iframe' as const },
+];
+
+interface Video {
+  id: number;
+  title: string;
+  thumbnail: string;
+  videoUrl: string;
+  type: 'video' | 'iframe';
+}
+
+interface VideoShowcaseProps {
+  onVideoClick: (video: Video) => void;
+}
+
+export type { Video };
+
+export default function VideoShowcase({ onVideoClick }: VideoShowcaseProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let scrollAmount = 0;
+    const scrollSpeed = 0.5;
+
+    const scroll = () => {
+      scrollAmount += scrollSpeed;
+      if (scrollContainer) {
+        scrollContainer.scrollLeft = scrollAmount;
+
+        if (scrollAmount >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+          scrollAmount = 0;
+        }
+      }
+    };
+
+    const intervalId = setInterval(scroll, 30);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <section id="showcase" className="py-16 sm:py-20 bg-black overflow-hidden relative">
+      <div className="mb-8 sm:mb-12 px-6 max-w-7xl mx-auto relative z-10">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-3 sm:mb-4">Our Work</h2>
+        <p className="text-base sm:text-lg md:text-xl text-gray-400">Real ad creatives. Real results.</p>
+      </div>
+
+      <div
+        ref={scrollRef}
+        className="flex gap-4 sm:gap-8 px-6 overflow-x-auto scrollbar-hide scroll-smooth relative z-10"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        {[...videos, ...videos].map((video, index) => (
+          <div
+            key={`${video.id}-${index}`}
+            className="flex-shrink-0 relative group cursor-pointer overflow-hidden rounded-2xl"
+            style={{ width: '250px', height: '444px', maxWidth: '80vw', maxHeight: '70vh' }}
+            onClick={() => {
+              onVideoClick(video);
+            }}
+          >
+            <div className="w-full h-full overflow-hidden">
+              <img
+                src={video.thumbnail}
+                alt={video.title}
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 rounded-2xl flex items-center justify-center">
+              <div className="transform scale-0 group-hover:scale-100 transition-transform duration-300">
+                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center">
+                  <Play size={32} className="text-black ml-1" fill="black" />
+                </div>
+              </div>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black to-transparent rounded-b-2xl">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-semibold whitespace-nowrap">{video.title}</h3>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

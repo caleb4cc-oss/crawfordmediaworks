@@ -78,7 +78,7 @@ window. open(video.videoUrl, '_self');
               </div>
             </div>
             <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black to-transparent rounded-b-2xl flex justify-center">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-semibold sm:whitespace-nowrap">{video.title}</h3>
+              <h3 className="text-sm sm:text-base md:text-lg font-semibold sm:whitespace-nowrap">{video.title}</h3>
             </div>
           </div>
         ))}
